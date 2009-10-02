@@ -20,39 +20,39 @@ public class Mandelbrot extends Applet implements MouseListener,
 	Choice colorThemeMenu;
 
 	String[] colorThemeStrings = { "Black and White", "Gray", "Red", "Green",
-			"Blue", "Purple", "Yellow", "Rainbow" };
+			"Blue", "Purple", "Yellow", "Fire", "Rainbow" };
 
 	public void init() {
 
 		xOriginTextField = new TextField(""
-				+ Double.parseDouble(getParameter("xOrigin")), 10);
+				+ Double.parseDouble(getParam("xOrigin", "0")), 8);
 		add(xOriginTextField);
 		xOriginTextField.addActionListener(this);
-		xOrigin = Double.parseDouble(getParameter("xOrigin"));
+		xOrigin = Double.parseDouble(getParam("xOrigin", "0"));
 
 		yOriginTextField = new TextField(""
-				+ Double.parseDouble(getParameter("yOrigin")), 10);
+				+ Double.parseDouble(getParam("yOrigin", "0")), 8);
 		add(yOriginTextField);
 		yOriginTextField.addActionListener(this);
-		yOrigin = Double.parseDouble(getParameter("yOrigin"));
+		yOrigin = Double.parseDouble(getParam("yOrigin", "0"));
 
 		iterationsTextField = new TextField(""
-				+ Integer.parseInt(getParameter("iterations")), 10);
+				+ Integer.parseInt(getParam("iterations", "100")), 8);
 		add(iterationsTextField);
 		iterationsTextField.addActionListener(this);
-		iterations = Integer.parseInt(getParameter("iterations"));
+		iterations = Integer.parseInt(getParam("iterations", "100"));
 
 		scaleFactorTextField = new TextField(""
-				+ Double.parseDouble(getParameter("scaleFactor")), 10);
+				+ Double.parseDouble(getParam("scaleFactor", "0.01")), 8);
 		add(scaleFactorTextField);
 		scaleFactorTextField.addActionListener(this);
-		scaleFactor = Double.parseDouble(getParameter("scaleFactor"));
+		scaleFactor = Double.parseDouble(getParam("scaleFactor", "0.01"));
 
 		zoomFactorTextField = new TextField(""
-				+ Integer.parseInt(getParameter("zoomFactor")), 10);
+				+ Integer.parseInt(getParam("zoomFactor", "2")), 8);
 		add(zoomFactorTextField);
 		zoomFactorTextField.addActionListener(this);
-		zoomFactor = Integer.parseInt(getParameter("zoomFactor"));
+		zoomFactor = Integer.parseInt(getParam("zoomFactor", "2"));
 
 		addMouseListener(this);
 
@@ -62,8 +62,16 @@ public class Mandelbrot extends Applet implements MouseListener,
 			colorThemeMenu.add(colorThemeStrings[t]);
 		}
 		colorThemeMenu.addItemListener(this);
-		colorThemeMenu.select(Integer.parseInt(getParameter("colorTheme")));
+		colorThemeMenu.select(Integer.parseInt(getParam("colorTheme", "7")));
 
+	}
+	
+	private String getParam(String name, String def) {
+		String value = getParameter(name);
+		if (value == null) {
+			value = def;
+		}
+		return value;
 	}
 
 	private int mandelNumber(double x, double y) {
@@ -82,7 +90,7 @@ public class Mandelbrot extends Applet implements MouseListener,
 		return i;
 	}
 
-	private Color mandelColor(int ms) {
+	private Color mandelColor(int mg) {
 
 		int colorTheme = colorThemeMenu.getSelectedIndex();
 
@@ -92,7 +100,7 @@ public class Mandelbrot extends Applet implements MouseListener,
 		switch (colorTheme) {
 		case 0:
 			// black and white
-			if (ms % 2 == 1) {
+			if (mg % 2 == 1) {
 				r = g = b = 255;
 			} else {
 				r = g = b = 0;
@@ -100,40 +108,69 @@ public class Mandelbrot extends Applet implements MouseListener,
 			break;
 		case 1:
 			// gray
-			r = g = b = ms * 255 / iterations;
+			r = g = b = mg * 255 / iterations;
 			break;
 		case 2:
 			// red
-			r = ms * 255 / iterations;
+			r = mg * 255 / iterations;
 			g = b = 0;
 			break;
 		case 3:
 			// green
-			g = ms * 255 / iterations;
+			g = mg * 255 / iterations;
 			r = b = 0;
 			break;
 		case 4:
 			// blue
-			b = ms * 255 / iterations;
+			b = mg * 255 / iterations;
 			r = g = 0;
 			break;
 		case 5:
 			// purple
-			r = b = ms * 255 / iterations;
+			r = b = mg * 255 / iterations;
 			g = 0;
 			break;
 		case 6:
 			// yellow
-			r = g = ms * 127 / iterations;
+			r = g = mg * 127 / iterations;
 			b = 0;
 			break;
 		case 7:
-			return Color.getHSBColor((float) ms / iterations * 2 / 3, 1, 1);
+			// fire
+			if (mg == iterations) {
+				r = g = b = 0;
+			} else {
+				// mg: 0 - 99
+				if (mg < iterations / 2) {
+					// mg: 0 - 48
+					r = 2 * mg * 255 / iterations;
+					g = 0;
+				} else {
+					// 49 - 99 
+					r = 255;
+					g = (mg - iterations / 2) * 2 * 255 / iterations;
+//						2 * mg * 255 / iterations;
+				}
+
+				b = 0;
+			}
+			break;
+		case 8:
+			// rainbow
+			return Color.getHSBColor((float) mg / iterations * 2 / 3, 1, 1);
 		}
 
 		return new Color(r, g, b);
 
 	}
+	
+//	private Color tweeslag(Color c1, Color c2, Color c3, int mg) {
+//		
+//	}
+//	
+//	private int tweeslag(int n1, int n2, int n3, int mg) {
+//		
+//	}
 
 	private double toMandelX(int xpixel) {
 		return scaleFactor * (xpixel - getWidth() / 2) + xOrigin;
