@@ -10,7 +10,8 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class Mandelbrot extends Applet implements MouseListener, ActionListener, ItemListener {
+public class Mandelbrot extends Applet implements MouseListener,
+		ActionListener, ItemListener {
 
 	double xOrigin, yOrigin, scaleFactor;
 	int iterations, zoomFactor;
@@ -23,30 +24,35 @@ public class Mandelbrot extends Applet implements MouseListener, ActionListener,
 
 	public void init() {
 
-		xOriginTextField = new TextField("0.0", 10);
+		xOriginTextField = new TextField(""
+				+ Double.parseDouble(getParameter("xOrigin")), 10);
 		add(xOriginTextField);
 		xOriginTextField.addActionListener(this);
-		xOrigin = 0.0;
+		xOrigin = Double.parseDouble(getParameter("xOrigin"));
 
-		yOriginTextField = new TextField("0.0", 10);
+		yOriginTextField = new TextField(""
+				+ Double.parseDouble(getParameter("yOrigin")), 10);
 		add(yOriginTextField);
 		yOriginTextField.addActionListener(this);
-		yOrigin = 0.0;
+		yOrigin = Double.parseDouble(getParameter("yOrigin"));
 
-		iterationsTextField = new TextField("50", 10);
+		iterationsTextField = new TextField(""
+				+ Integer.parseInt(getParameter("iterations")), 10);
 		add(iterationsTextField);
 		iterationsTextField.addActionListener(this);
-		iterations = 50;
+		iterations = Integer.parseInt(getParameter("iterations"));
 
-		scaleFactorTextField = new TextField("0.01", 10);
+		scaleFactorTextField = new TextField(""
+				+ Double.parseDouble(getParameter("scaleFactor")), 10);
 		add(scaleFactorTextField);
 		scaleFactorTextField.addActionListener(this);
-		scaleFactor = 0.01;
+		scaleFactor = Double.parseDouble(getParameter("scaleFactor"));
 
-		zoomFactorTextField = new TextField("2", 10);
+		zoomFactorTextField = new TextField(""
+				+ Integer.parseInt(getParameter("zoomFactor")), 10);
 		add(zoomFactorTextField);
 		zoomFactorTextField.addActionListener(this);
-		zoomFactor = 2;
+		zoomFactor = Integer.parseInt(getParameter("zoomFactor"));
 
 		addMouseListener(this);
 
@@ -56,7 +62,7 @@ public class Mandelbrot extends Applet implements MouseListener, ActionListener,
 			colorThemeMenu.add(colorThemeStrings[t]);
 		}
 		colorThemeMenu.addItemListener(this);
-		colorThemeMenu.select(1);
+		colorThemeMenu.select(Integer.parseInt(getParameter("colorTheme")));
 
 	}
 
@@ -203,7 +209,6 @@ public class Mandelbrot extends Applet implements MouseListener, ActionListener,
 		repaint();
 
 	}
-
 
 	private static final long serialVersionUID = 1;
 
