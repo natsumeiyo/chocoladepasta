@@ -1,4 +1,5 @@
 import java.applet.Applet;
+import java.awt.Button;
 import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -18,6 +19,7 @@ public class Mandelbrot extends Applet implements MouseListener,
 	TextField xOriginTextField, yOriginTextField, iterationsTextField,
 			scaleFactorTextField, zoomFactorTextField;
 	Choice colorThemeMenu;
+	Button resetButton;
 
 	String[] colorThemeStrings = { "Black and White", "Gray", "Red", "Green",
 			"Blue", "Purple", "Yellow", "Fire", "Rainbow" };
@@ -64,8 +66,12 @@ public class Mandelbrot extends Applet implements MouseListener,
 		colorThemeMenu.addItemListener(this);
 		colorThemeMenu.select(Integer.parseInt(getParam("colorTheme", "7")));
 
+		resetButton = new Button("Reset");
+		this.add(resetButton);
+		resetButton.addActionListener(this);
+
 	}
-	
+
 	private String getParam(String name, String def) {
 		String value = getParameter(name);
 		if (value == null) {
@@ -146,10 +152,10 @@ public class Mandelbrot extends Applet implements MouseListener,
 					r = 2 * mg * 255 / iterations;
 					g = 0;
 				} else {
-					// 49 - 99 
+					// 49 - 99
 					r = 255;
 					g = (mg - iterations / 2) * 2 * 255 / iterations;
-//						2 * mg * 255 / iterations;
+					// 2 * mg * 255 / iterations;
 				}
 
 				b = 0;
@@ -163,14 +169,14 @@ public class Mandelbrot extends Applet implements MouseListener,
 		return new Color(r, g, b);
 
 	}
-	
-//	private Color tweeslag(Color c1, Color c2, Color c3, int mg) {
-//		
-//	}
-//	
-//	private int tweeslag(int n1, int n2, int n3, int mg) {
-//		
-//	}
+
+	// private Color tweeslag(Color c1, Color c2, Color c3, int mg) {
+	//		
+	// }
+	//	
+	// private int tweeslag(int n1, int n2, int n3, int mg) {
+	//		
+	// }
 
 	private double toMandelX(int xpixel) {
 		return scaleFactor * (xpixel - getWidth() / 2) + xOrigin;
@@ -194,7 +200,7 @@ public class Mandelbrot extends Applet implements MouseListener,
 
 	public void mouseClicked(MouseEvent e) {
 
-		if (e.getY() < 50) {
+		if (e.getY() < 75) {
 			// Ugly hack: make sure the applet doesn't zoom in when a text field
 			// is clicked.
 			return;
@@ -236,6 +242,14 @@ public class Mandelbrot extends Applet implements MouseListener,
 	}
 
 	public void actionPerformed(ActionEvent e) {
+
+		if (e.getSource() == resetButton) {
+			xOriginTextField.setText("0");
+			yOriginTextField.setText("0");
+			iterationsTextField.setText("100");
+			scaleFactorTextField.setText("0.01");
+			zoomFactorTextField.setText("2");
+		}
 
 		xOrigin = Double.parseDouble(xOriginTextField.getText());
 		yOrigin = Double.parseDouble(yOriginTextField.getText());
