@@ -74,13 +74,13 @@ public class Mandelbrot extends Applet implements MouseListener, ActionListener 
 	}
 
 	private double toMandelY(int ypixel) {
-		return scaleFactor * (ypixel - getWidth() / 2) + yOrigin;
+		return -scaleFactor * (ypixel - getHeight() / 2) + yOrigin;
 	}
 
 	public void paint(Graphics g) {
 
 		for (int xpixel = 0; xpixel < getWidth(); xpixel++) {
-			for (int ypixel = 0; ypixel < getWidth(); ypixel++) {
+			for (int ypixel = 0; ypixel < getHeight(); ypixel++) {
 				g.setColor(mandelColor(mandelbrotSet(toMandelX(xpixel),
 						toMandelY(ypixel))));
 				g.fillRect(xpixel, ypixel, 1, 1);
@@ -91,7 +91,7 @@ public class Mandelbrot extends Applet implements MouseListener, ActionListener 
 
 	public void mouseClicked(MouseEvent e) {
 
-		if (e.getX() < 50) {
+		if (e.getY() < 50) {
 			return;
 		}
 
