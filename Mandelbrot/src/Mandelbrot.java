@@ -73,12 +73,6 @@ public class Mandelbrot extends Applet implements MouseListener, ActionListener 
 
 		int r, g, b;
 		r = g = b = 0;
-		double saturation = 0.3;
-
-		/*
-		 * String[] colorThemeStrings = { "Black and White", "Gray", "Red",
-		 * "Green", "Blue", "Purple", "Yellow", "Rainbow" };
-		 */
 
 		switch (colorTheme) {
 		case 0:
@@ -95,8 +89,28 @@ public class Mandelbrot extends Applet implements MouseListener, ActionListener 
 			break;
 		case 2:
 			// red
-			r = 255;
-			g = b = 255 - ms * 255 / iterations;
+			r = ms * 255 / iterations;
+			g = b = 0;
+			break;
+		case 3:
+			// green
+			g = ms * 255 / iterations;
+			r = b = 0;
+			break;
+		case 4:
+			// blue
+			b = ms * 255 / iterations;
+			r = g = 0;
+			break;
+		case 5:
+			// purple
+			r = b = ms * 255 / iterations;
+			g = 0;
+			break;
+		case 6:
+			// yellow
+			r = g = ms * 127 / iterations;
+			b = 0;
 			break;
 		case 7:
 			return Color.getHSBColor((float) ms / iterations * 2 / 3, 1, 1);
