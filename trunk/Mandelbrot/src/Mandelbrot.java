@@ -1,8 +1,16 @@
 import java.applet.Applet;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Choice;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class Mandelbrot extends Applet implements MouseListener, ActionListener {
+public class Mandelbrot extends Applet implements MouseListener, ActionListener, ItemListener {
 
 	double xOrigin, yOrigin, scaleFactor;
 	int iterations, zoomFactor;
@@ -47,6 +55,7 @@ public class Mandelbrot extends Applet implements MouseListener, ActionListener 
 		for (int t = 0; t < colorThemeStrings.length; t++) {
 			colorThemeMenu.add(colorThemeStrings[t]);
 		}
+		colorThemeMenu.addItemListener(this);
 		colorThemeMenu.select(1);
 
 	}
@@ -195,5 +204,10 @@ public class Mandelbrot extends Applet implements MouseListener, ActionListener 
 
 	}
 
+
 	private static final long serialVersionUID = 1;
+
+	public void itemStateChanged(ItemEvent e) {
+		repaint();
+	}
 }
