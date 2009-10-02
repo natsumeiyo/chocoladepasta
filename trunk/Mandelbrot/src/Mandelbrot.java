@@ -21,8 +21,7 @@ public class Mandelbrot extends Applet implements MouseListener,
 	Choice colorThemeMenu;
 	Button resetButton;
 
-	String[] colorThemeStrings = { "Black and White", "Gray", "Red", "Green",
-			"Blue", "Purple", "Yellow", "Fire", "Rainbow" };
+	String[] colorThemeStrings = { "Gray", "Green", "Fire", "Rainbow" };
 
 	public void init() {
 
@@ -64,7 +63,7 @@ public class Mandelbrot extends Applet implements MouseListener,
 			colorThemeMenu.add(colorThemeStrings[t]);
 		}
 		colorThemeMenu.addItemListener(this);
-		colorThemeMenu.select(Integer.parseInt(getParam("colorTheme", "7")));
+		colorThemeMenu.select(Integer.parseInt(getParam("colorTheme", "0")));
 
 		resetButton = new Button("Reset");
 		this.add(resetButton);
@@ -105,43 +104,15 @@ public class Mandelbrot extends Applet implements MouseListener,
 
 		switch (colorTheme) {
 		case 0:
-			// black and white
-			if (mg % 2 == 1) {
-				r = g = b = 255;
-			} else {
-				r = g = b = 0;
-			}
-			break;
-		case 1:
 			// gray
 			r = g = b = mg * 255 / iterations;
 			break;
-		case 2:
-			// red
-			r = mg * 255 / iterations;
-			g = b = 0;
-			break;
-		case 3:
+		case 1:
 			// green
-			g = mg * 255 / iterations;
+			g = mg * 200 / iterations;
 			r = b = 0;
 			break;
-		case 4:
-			// blue
-			b = mg * 255 / iterations;
-			r = g = 0;
-			break;
-		case 5:
-			// purple
-			r = b = mg * 255 / iterations;
-			g = 0;
-			break;
-		case 6:
-			// yellow
-			r = g = mg * 127 / iterations;
-			b = 0;
-			break;
-		case 7:
+		case 2:
 			// fire
 			if (mg == iterations) {
 				r = g = b = 0;
@@ -161,7 +132,7 @@ public class Mandelbrot extends Applet implements MouseListener,
 				b = 0;
 			}
 			break;
-		case 8:
+		case 3:
 			// rainbow
 			return Color.getHSBColor((float) mg / iterations * 2 / 3, 1, 1);
 		}
@@ -169,14 +140,6 @@ public class Mandelbrot extends Applet implements MouseListener,
 		return new Color(r, g, b);
 
 	}
-
-	// private Color tweeslag(Color c1, Color c2, Color c3, int mg) {
-	//		
-	// }
-	//	
-	// private int tweeslag(int n1, int n2, int n3, int mg) {
-	//		
-	// }
 
 	private double toMandelX(int xpixel) {
 		return scaleFactor * (xpixel - getWidth() / 2) + xOrigin;
