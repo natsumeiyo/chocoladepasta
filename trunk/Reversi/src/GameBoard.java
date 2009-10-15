@@ -10,17 +10,6 @@ public class GameBoard extends Canvas implements MouseListener {
 	
 	Square[][] board;
 	
-//	private int[][] directions = { 
-//			{ -1, -1 }, // N-W 0
-//			{  0, -1 }, // N   1
-//			{  1, -1 }, // N-E 2
-//			{  1,  0 }, // E   3
-//			{  1,  1 }, // S-E 4
-//			{  0,  1 }, // S   5
-//			{ -1,  1 }, // S-W 6
-//			{ -1,  0 }, // W   7
-//	};
-	
 	public GameBoard(int rows, int columns) {
 		pixelsPerSquare = 40;
 		numberOfRows = rows;
@@ -115,9 +104,7 @@ public class GameBoard extends Canvas implements MouseListener {
 	}
 
 	public void paint(Graphics g) {
-		g.setColor(Color.CYAN);
-		g.fillRect(0, 0, getWidth(), getHeight());
-
+		
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);

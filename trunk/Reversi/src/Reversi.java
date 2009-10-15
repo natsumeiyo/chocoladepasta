@@ -9,6 +9,8 @@ public class Reversi extends Applet implements ActionListener {
 
 	public void init() {
 		
+		setBackground(new Color(240, 240, 240));
+		
 		newGame = new Button("New Game");
 		add(newGame);
 		newGame.addActionListener(this);
@@ -17,7 +19,7 @@ public class Reversi extends Applet implements ActionListener {
 		add(help);
 		help.addActionListener(this);
 
-		gameBoard = new GameBoard(6, 10);
+		gameBoard = new GameBoard(6, 6);
 		add(gameBoard);
 	}
 
