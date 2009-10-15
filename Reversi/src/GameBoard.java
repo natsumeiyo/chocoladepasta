@@ -10,17 +10,17 @@ public class GameBoard extends Canvas implements MouseListener {
 	
 	Square[][] board;
 	
-	private int[][] directions = { 
-			{ -1, -1 }, // N-W 0
-			{  0, -1 }, // N   1
-			{  1, -1 }, // N-E 2
-			{  1,  0 }, // E   3
-			{  1,  1 }, // S-E 4
-			{  0,  1 }, // S   5
-			{ -1,  1 }, // S-W 6
-			{ -1,  0 }, // W   7
-	};
-
+//	private int[][] directions = { 
+//			{ -1, -1 }, // N-W 0
+//			{  0, -1 }, // N   1
+//			{  1, -1 }, // N-E 2
+//			{  1,  0 }, // E   3
+//			{  1,  1 }, // S-E 4
+//			{  0,  1 }, // S   5
+//			{ -1,  1 }, // S-W 6
+//			{ -1,  0 }, // W   7
+//	};
+	
 	public GameBoard(int rows, int columns) {
 		pixelsPerSquare = 40;
 		numberOfRows = rows;
@@ -68,44 +68,41 @@ public class GameBoard extends Canvas implements MouseListener {
 
 	public boolean legalDirection(Square s) {
 
-		for (int i = 0; i < directions.length; i++) {
-			if (onBoard(s, directions[i]) 
-					&& otherOwner(s, directions[i])
-					&& endsInCurrentPlayer(s, directions[i])) {
+		for (Direction d : Direction.values()) {
+			if (onBoard(s, d) && otherOwner(s, d) && endsInCurrentPlayer(s, d)) {
 				return true;
 			}
 		}
-		
+
 		return false;
-	}
+	}	
 	
-	
-	private boolean otherOwner(Square s, int[] d) {
+	private boolean otherOwner(Square s, Direction d) {
 		Square n = neighbor(s, d);
 		return !(n.isFree() || player == n.getOwner());
 	}
 
-	private Square neighbor(Square s, int[] d) {
-		return board[s.row + d[1]][s.column + d[0]];
+	private Square neighbor(Square s, Direction d) {
+		return board[s.row + d.dy][s.column + d.dx];
 	}
 
-	private boolean onBoard(Square s, int[] d) {
-		return ((s.column + d[0]) >= 0)
-				&& ((s.column + d[0]) < numberOfColumns)
-				&& ((s.row + d[1]) >= 0)
-				&& ((s.row + d[1]) < numberOfRows);
+	private boolean onBoard(Square s, Direction d) {
+		return ((s.column + d.dx) >= 0)
+				&& ((s.column + d.dx) < numberOfColumns)
+				&& ((s.row + d.dy) >= 0)
+				&& ((s.row + d.dy) < numberOfRows);
 	}
 	
-	private boolean endsInCurrentPlayer(Square s, int[] d) {
+	private boolean endsInCurrentPlayer(Square s, Direction d) {
 		
-		int r = s.row + d[1];
-		int c = s.column + d[0];
+		int r = s.row + d.dy;
+		int c = s.column + d.dx;
 	
 		while (onBoard(board[r][c], d) && !board[r][c].isFree()
 				&& board[r][c].owner != player) {
 
-			r += d[1];
-			c += d[0];
+			r += d.dy;
+			c += d.dx;
 
 			if (board[r][c].getOwner() == player) {
 				return true;
