@@ -5,6 +5,7 @@ import java.awt.event.*;
 public class Reversi extends Applet implements ActionListener {
 
 	GameBoard gameBoard;
+	boolean showLegalMoves;
 	Button newGame, help;
 
 	public void init() {
@@ -25,7 +26,7 @@ public class Reversi extends Applet implements ActionListener {
 		if  (e.getSource() == newGame) {
 			gameBoard.setUpGameboard();
 		} else {
-			// show game options
+			// TO DO
 		}
 		gameBoard.repaint();
 	}
