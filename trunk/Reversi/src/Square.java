@@ -11,7 +11,6 @@ public class Square {
 		row = r;
 		column = c;
 		owner = o;
-
 	}
 
 	public void paint(Graphics g, boolean showLegalMoves) {
@@ -44,7 +43,6 @@ public class Square {
 
 	public boolean isFree() {
 		return owner == 0;
-
 	}
 	
 	public int getOwner() {
