@@ -10,14 +10,14 @@ public class GameBoard extends Canvas implements MouseListener {
 
 	Square[][] board;
 	private int[][] directions = { 
-			{ -1, -1 }, // N-W
-			{  0, -1 }, // N
-			{  1, -1 }, // N-E
-			{  1,  0 }, // E
-			{  1,  1 }, // S-E
-			{  0,  1 }, // S
-			{ -1,  1 }, // S-W
-			{ -1,  0 }, // W
+			{ -1, -1 }, // N-W 0
+			{  0, -1 }, // N   1
+			{  1, -1 }, // N-E 2
+			{  1,  0 }, // E   3
+			{  1,  1 }, // S-E 4
+			{  0,  1 }, // S   5
+			{ -1,  1 }, // S-W 6
+			{ -1,  0 }, // W   7
 	};
 
 	public GameBoard(int rows, int columns) {
@@ -58,12 +58,6 @@ public class GameBoard extends Canvas implements MouseListener {
 		board[rp][cp].setOwner(1);
 		board[rp - 1][cp].setOwner(2);
 		board[rp][cp - 1].setOwner(2);
-		
-		for (int r = 0; r < numberOfRows; r++) {
-			for (int c = 0; c < numberOfColumns; c++) {
-				board[r][c].legalMove = legalMove(board[r][c]);
-			}
-		}
 
 	}
 
@@ -110,13 +104,15 @@ public class GameBoard extends Canvas implements MouseListener {
 		int r = s.row + d[1];
 		int c = s.column + d[0];
 	
-		while (onBoard(r, c) && !board[r][c].isFree() && board[r][c].owner != player) {
-			r += d[1];
-			c += d[0];
-			
+		while (onBoard(r, c) && !board[r][c].isFree()
+				&& board[r][c].owner != player) {
 			if (board[r][c].getOwner() == player) {
 				return true;
 			}
+			
+			r += d[1];
+			c += d[0];
+
 		}
 		return false;
 	}
@@ -130,6 +126,12 @@ public class GameBoard extends Canvas implements MouseListener {
 
 		for (int r = 0; r < numberOfRows; r++) {
 			for (int c = 0; c < numberOfColumns; c++) {
+				board[r][c].legalMove = legalMove(board[r][c]);
+			}
+		}
+
+		for (int r = 0; r < numberOfRows; r++) {
+			for (int c = 0; c < numberOfColumns; c++) {
 				board[r][c].paint(g2);
 			}
 		}
@@ -139,9 +141,11 @@ public class GameBoard extends Canvas implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		int r = e.getY() / pixelsPerSquare;
 		int c = e.getX() / pixelsPerSquare;
-		if (board[r][c].legalMove) {
+
+		if (legalMove(board[r][c])) {
 			board[r][c].setOwner(player);
 			player = player == 1 ? 2 : 1;
+			Square.showLegalMoves = false;
 			repaint();
 		}
 	}
