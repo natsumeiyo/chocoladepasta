@@ -6,9 +6,10 @@ public class GameBoard extends Canvas implements MouseListener {
 	int pixelsPerSquare, canvasWidth, canvasHeight;
 	int numberOfRows, numberOfColumns;
 	int player;
-	Graphics gr;
-
+	boolean showLegalMoves;
+	
 	Square[][] board;
+	
 	private int[][] directions = { 
 			{ -1, -1 }, // N-W 0
 			{  0, -1 }, // N   1
@@ -94,30 +95,31 @@ public class GameBoard extends Canvas implements MouseListener {
 				&& ((s.row + d[1]) >= 0)
 				&& ((s.row + d[1]) < numberOfRows);
 	}
-	private boolean onBoard(int r, int c) {
-		return c >= 0 && c < numberOfColumns
-		&& r >= 0 && r < numberOfRows;
-	}
 	
 	private boolean endsInCurrentPlayer(Square s, int[] d) {
 		
 		int r = s.row + d[1];
 		int c = s.column + d[0];
 	
-		while (onBoard(r, c) && !board[r][c].isFree()
+		while (onBoard(board[r][c], d) && !board[r][c].isFree()
 				&& board[r][c].owner != player) {
+
+			r += d[1];
+			c += d[0];
+
 			if (board[r][c].getOwner() == player) {
 				return true;
 			}
 			
-			r += d[1];
-			c += d[0];
 
+	
 		}
 		return false;
 	}
 
 	public void paint(Graphics g) {
+		g.setColor(Color.CYAN);
+		g.fillRect(0, 0, getWidth(), getHeight());
 
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -132,7 +134,7 @@ public class GameBoard extends Canvas implements MouseListener {
 
 		for (int r = 0; r < numberOfRows; r++) {
 			for (int c = 0; c < numberOfColumns; c++) {
-				board[r][c].paint(g2);
+				board[r][c].paint(g2, showLegalMoves);
 			}
 		}
 
@@ -145,7 +147,6 @@ public class GameBoard extends Canvas implements MouseListener {
 		if (legalMove(board[r][c])) {
 			board[r][c].setOwner(player);
 			player = player == 1 ? 2 : 1;
-			Square.showLegalMoves = false;
 			repaint();
 		}
 	}

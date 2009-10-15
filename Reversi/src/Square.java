@@ -6,7 +6,7 @@ public class Square {
 	int row, column, owner;
 	int pixelsPerSquare = 40;
 	boolean legalMove;
-	static boolean showLegalMoves;
+//	static boolean showLegalMoves;
 
 	public Square(int r, int c, int o) {
 		row = r;
@@ -15,7 +15,7 @@ public class Square {
 
 	}
 
-	public void paint(Graphics g) {
+	public void paint(Graphics g, boolean showLegalMoves) {
 		if ((row % 2) == (column % 2)) {
 			g.setColor(Color.WHITE);
 		} else {

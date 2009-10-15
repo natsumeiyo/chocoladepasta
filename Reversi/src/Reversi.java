@@ -17,7 +17,7 @@ public class Reversi extends Applet implements ActionListener {
 		add(help);
 		help.addActionListener(this);
 
-		gameBoard = new GameBoard(6, 6);
+		gameBoard = new GameBoard(6, 10);
 		add(gameBoard);
 	}
 
@@ -25,7 +25,7 @@ public class Reversi extends Applet implements ActionListener {
 		if  (e.getSource() == newGame) {
 			gameBoard.setUpGameboard();
 		} else {
-			Square.showLegalMoves = !Square.showLegalMoves;
+			gameBoard.showLegalMoves = !gameBoard.showLegalMoves;
 		}
 
 		gameBoard.repaint();
