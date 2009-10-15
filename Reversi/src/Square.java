@@ -6,7 +6,6 @@ public class Square {
 	int row, column, owner;
 	int pixelsPerSquare = 40;
 	boolean legalMove;
-//	static boolean showLegalMoves;
 
 	public Square(int r, int c, int o) {
 		row = r;
