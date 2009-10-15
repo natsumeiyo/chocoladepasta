@@ -6,12 +6,12 @@ public class Square {
 	int row, column, owner;
 	int pixelsPerSquare = 40;
 	boolean legalMove;
+	static boolean showLegalMoves;
 
 	public Square(int r, int c, int o) {
 		row = r;
 		column = c;
 		owner = o;
-		legalMove = false;
 
 	}
 
@@ -35,7 +35,7 @@ public class Square {
 					+ 4, pixelsPerSquare - 10, pixelsPerSquare - 10);
 		}
 		
-		if (legalMove) {
+		if (legalMove && showLegalMoves) {
 			g.setColor(Color.BLACK);
 			g.drawOval(pixelsPerSquare * (column) + 9, pixelsPerSquare * (row)
 					+ 9, pixelsPerSquare - 20, pixelsPerSquare - 20);
