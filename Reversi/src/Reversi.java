@@ -3,17 +3,21 @@ import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Reversi extends Applet implements ActionListener, MouseListener {
+/**
+ * A Java applet that generate the gameboard Reversi.
+ * 
+ * @author Tamar van Steenbergen, student no. 3233308
+ */
 
+public class Reversi extends Applet implements ActionListener, MouseListener {
+	
 	GameBoard gameBoard;
 	Button newGame, pass, help;
 	Label status;
 
 	public void init() {
 		Panel buttons, canvas;
-
 		setBackground(new Color(240, 240, 240));
-
 		setLayout(new BorderLayout());
 
 		buttons = new Panel();
@@ -29,27 +33,30 @@ public class Reversi extends Applet implements ActionListener, MouseListener {
 
 		add(buttons, BorderLayout.NORTH);
 
+		
 		status = new Label("RED has 2 stones\nBLUE has 2 stones\n\nRED's turn",
 				Label.CENTER);
 		add(status, BorderLayout.CENTER);
 
+		
 		canvas = new Panel();
 		canvas.setLayout(new FlowLayout());
 		gameBoard = new GameBoard(
-				Integer.parseInt(getParam("boardWidth", "6")), 
-				Integer.parseInt(getParam("boardHeight", "6")));
+				Integer.parseInt(getParam("boardWidth", "6")), Integer
+						.parseInt(getParam("boardHeight", "6")));
 		canvas.add(gameBoard);
 		add(canvas, BorderLayout.SOUTH);
 
+		
 		gameBoard.addMouseListener(this);
 	}
 
 	private String getParam(String name, String def) {
-		// if there is no HTML file, make sure text fields still get a default
-		// value
+		// if there is no HTML file or the result of getParameter < 3, make sure
+		// text fields still get a default value
 
 		String value = getParameter(name);
-		if (value == null) {
+		if (value == null || Integer.parseInt(value) < 3) {
 			value = def;
 		}
 		return value;
@@ -57,12 +64,13 @@ public class Reversi extends Applet implements ActionListener, MouseListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == newGame) {
+			// reset game
 			gameBoard.setUpGameboard();
 			status.setText("RED has 2 stones\nBLUE has 2 stones\n\nRED's turn");
 		} else {
+			// toggle the legal move option
 			gameBoard.showLegalMoves = !gameBoard.showLegalMoves;
 		}
-
 		gameBoard.repaint();
 	}
 
@@ -70,8 +78,10 @@ public class Reversi extends Applet implements ActionListener, MouseListener {
 		gameBoard.squareClicked(e.getX(), e.getY());
 
 		if (gameBoard.endGame) {
-			status.setText("Game over. " + gameBoard.getWinner());
+			// announce end of the game
+			status.setText("Game over: " + gameBoard.getWinner());
 		} else {
+			// update game's status
 			status.setText(gameBoard.getStatusText());
 		}
 	}
