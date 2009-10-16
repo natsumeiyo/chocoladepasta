@@ -1,6 +1,12 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
+/**
+ * A Java applet that generates the gameboard Reversi.
+ * 
+ * @author Tamar van Steenbergen, student no. 3233308
+ */
+
 public class Square {
 
 	final int row, column;

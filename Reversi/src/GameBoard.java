@@ -1,5 +1,11 @@
 import java.awt.*;
 
+/**
+ * A Java applet that generates the gameboard Reversi.
+ * 
+ * @author Tamar van Steenbergen, student no. 3233308
+ */
+
 public class GameBoard extends Canvas {
 
 	int numberOfRows, numberOfColumns;
