@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * A Java applet that generate the gameboard Reversi.
+ * A Java applet that generates the gameboard Reversi.
  * 
  * @author Tamar van Steenbergen, student no. 3233308
  */
