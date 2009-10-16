@@ -1,7 +1,6 @@
 import java.awt.*;
-import java.awt.event.*;
 
-public class GameBoard extends Canvas implements MouseListener {
+public class GameBoard extends Canvas {
 
 	int pixelsPerSquare, canvasWidth, canvasHeight;
 	int numberOfRows, numberOfColumns;
@@ -28,7 +27,6 @@ public class GameBoard extends Canvas implements MouseListener {
 
 		setUpGameboard();
 
-		addMouseListener(this);
 	}
 
 	public void setUpGameboard() {
@@ -93,7 +91,6 @@ public class GameBoard extends Canvas implements MouseListener {
 	}
 
 	public void paint(Graphics g) {
-		System.out.println("painting board");
 
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -120,16 +117,57 @@ public class GameBoard extends Canvas implements MouseListener {
 		return board[r][c];
 	}
 
-	public void mouseClicked(MouseEvent e) {
-		Square s = getSquareAt(e.getX(), e.getY());
+	public int otherPlayer() {
+		return 3 - player;
+	}
+
+	public int getNumberOfRedStones() {
+		int i = 0;
+		for (int r = 0; r < numberOfRows; r++) {
+			for (int c = 0; c < numberOfColumns; c++) {
+				if (board[r][c].getOwner() == 1) {
+					i++;
+				}
+			}
+		}
+		return i;
+	}
+
+	public int getNumberOfBlueStones() {
+		int i = 0;
+		for (int r = 0; r < numberOfRows; r++) {
+			for (int c = 0; c < numberOfColumns; c++) {
+				if (board[r][c].getOwner() == 2) {
+					i++;
+				}
+			}
+		}
+		return i;
+	}
+
+	public String getStatusText() {
+		String s1 = "RED has " + getNumberOfRedStones()
+				+ " stones\nBLUE has " + getNumberOfBlueStones() + " stones";
+		String s2 = "\n";
+		String s3 = "'s turn";
+		if (player == 1) {
+			s2 = "\nRED";
+			return s1 + s2 + s3;
+		} else {
+			if (player == 2) {
+				s2 = "\nBLUE";
+				return s1 + s2 + s3;
+			}
+		}
+		return s1;
+	}
+
+	public void squareClicked(int mx, int my) {
+		Square s = getSquareAt(mx, my);
 
 		if (legalMove(s)) {
 			doMove(s);
 		}
-	}
-
-	private int otherPlayer() {
-		return 3 - player;
 	}
 
 	private void doMove(Square s) {
@@ -151,18 +189,6 @@ public class GameBoard extends Canvas implements MouseListener {
 			s.setOwner(player);
 			s = neighbor(s, d);
 		}
-	}
-
-	public void mouseEntered(MouseEvent e) {
-	}
-
-	public void mouseExited(MouseEvent e) {
-	}
-
-	public void mousePressed(MouseEvent e) {
-	}
-
-	public void mouseReleased(MouseEvent e) {
 	}
 
 	private static final long serialVersionUID = 1;
