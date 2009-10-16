@@ -1,4 +1,5 @@
 import java.applet.Applet;
+import java.applet.AudioClip;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -12,10 +13,13 @@ import java.awt.event.*;
 public class Reversi extends Applet implements ActionListener, MouseListener {
 	
 	GameBoard gameBoard;
-	Button newGame, pass, help;
+	Button newGame, pass, help, inspiration;
 	Label status;
+	boolean play;
 
 	public void init() {
+		play = false;
+		
 		Panel buttons, canvas;
 		setBackground(new Color(240, 240, 240));
 		setLayout(new BorderLayout());
@@ -31,6 +35,10 @@ public class Reversi extends Applet implements ActionListener, MouseListener {
 		help = new Button("Help");
 		buttons.add(help);
 		help.addActionListener(this);
+
+		inspiration = new Button("Can't concentrate?");
+		buttons.add(inspiration);
+		inspiration.addActionListener(this);
 
 		add(buttons, BorderLayout.NORTH);
 
@@ -64,15 +72,36 @@ public class Reversi extends Applet implements ActionListener, MouseListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		
+		// load inspirational music
+		AudioClip bach = getAudioClip(getDocumentBase(), "bach.mid");
+		
 		if (e.getSource() == newGame) {
 			// reset game
 			gameBoard.setUpGameboard();
 			status.setText("RED has 2 stones\nBLUE has 2 stones\n\nRED's turn");
+			bach.stop();
+			play = false;
 		} else {
-			// toggle the legal move option
-			gameBoard.showLegalMoves = !gameBoard.showLegalMoves;
+			if (e.getSource() == help) {
+				// toggle the legal move option
+				gameBoard.showLegalMoves = !gameBoard.showLegalMoves;
+			}
 		}
+		
 		gameBoard.repaint();
+		
+		if (e.getSource() == inspiration) {
+			// does the player call for inspirational music?
+			if (!play) {
+				bach.loop();
+				play = true;
+			} else {
+				bach.stop();
+				play = false;
+			}
+			
+		}
 	}
 
 	public void mouseClicked(MouseEvent e) {
