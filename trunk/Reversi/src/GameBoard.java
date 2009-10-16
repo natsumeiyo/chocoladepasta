@@ -7,9 +7,9 @@ public class GameBoard extends Canvas implements MouseListener {
 	int numberOfRows, numberOfColumns;
 	int player;
 	boolean showLegalMoves;
-	
+
 	Square[][] board;
-	
+
 	public GameBoard(int rows, int columns) {
 		pixelsPerSquare = 40;
 		numberOfRows = rows;
@@ -34,6 +34,7 @@ public class GameBoard extends Canvas implements MouseListener {
 	public void setUpGameboard() {
 
 		player = 1;
+		showLegalMoves = false;
 
 		for (int r = 0; r < numberOfRows; r++) {
 			for (int c = 0; c < numberOfColumns; c++) {
@@ -52,59 +53,48 @@ public class GameBoard extends Canvas implements MouseListener {
 	}
 
 	public boolean legalMove(Square s) {
-		return (s.isFree() && legalDirection(s));
-	}
-
-	public boolean legalDirection(Square s) {
+		if (!s.isFree()) {
+			return false;
+		}
 
 		for (Direction d : Direction.values()) {
-			if (onBoard(s, d) && otherOwner(s, d) && endsInCurrentPlayer(s, d)) {
+			if (legalDirection(s, d)) {
 				return true;
 			}
 		}
-
 		return false;
-	}	
-	
-	private boolean otherOwner(Square s, Direction d) {
-		Square n = neighbor(s, d);
-		return !(n.isFree() || player == n.getOwner());
 	}
 
 	private Square neighbor(Square s, Direction d) {
 		return board[s.row + d.dy][s.column + d.dx];
 	}
 
-	private boolean onBoard(Square s, Direction d) {
+	private boolean hasNeighbor(Square s, Direction d) {
 		return ((s.column + d.dx) >= 0)
 				&& ((s.column + d.dx) < numberOfColumns)
-				&& ((s.row + d.dy) >= 0)
-				&& ((s.row + d.dy) < numberOfRows);
+				&& ((s.row + d.dy) >= 0) && ((s.row + d.dy) < numberOfRows);
 	}
-	
-	private boolean endsInCurrentPlayer(Square s, Direction d) {
-		
-		int r = s.row + d.dy;
-		int c = s.column + d.dx;
-	
-		while (onBoard(board[r][c], d) && !board[r][c].isFree()
-				&& board[r][c].owner != player) {
 
-			r += d.dy;
-			c += d.dx;
+	private boolean legalDirection(Square s, Direction d) {
 
-			if (board[r][c].getOwner() == player) {
-				return true;
+		if (hasNeighbor(s, d)) {
+			s = neighbor(s, d);
+
+			while (!s.isFree() && hasNeighbor(s, d) && s.getOwner() != player) {
+				s = neighbor(s, d);
+
+				if (s.getOwner() == player) {
+					return true;
+				}
 			}
-			
-
-	
 		}
+
 		return false;
 	}
 
 	public void paint(Graphics g) {
-		
+		System.out.println("painting board");
+
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
@@ -124,14 +114,42 @@ public class GameBoard extends Canvas implements MouseListener {
 
 	}
 
-	public void mouseClicked(MouseEvent e) {
-		int r = e.getY() / pixelsPerSquare;
-		int c = e.getX() / pixelsPerSquare;
+	public Square getSquareAt(int mx, int my) {
+		int c = mx / pixelsPerSquare;
+		int r = my / pixelsPerSquare;
+		return board[r][c];
+	}
 
-		if (legalMove(board[r][c])) {
-			board[r][c].setOwner(player);
-			player = player == 1 ? 2 : 1;
-			repaint();
+	public void mouseClicked(MouseEvent e) {
+		Square s = getSquareAt(e.getX(), e.getY());
+
+		if (legalMove(s)) {
+			doMove(s);
+		}
+	}
+
+	private int otherPlayer() {
+		return 3 - player;
+	}
+
+	private void doMove(Square s) {
+		s.setOwner(player);
+
+		for (Direction d : Direction.values()) {
+			if (legalDirection(s, d)) {
+				doMoveDirection(s, d);
+			}
+		}
+
+		player = otherPlayer();
+		repaint();
+	}
+
+	private void doMoveDirection(Square s, Direction d) {
+		s = neighbor(s, d);
+		while (s.getOwner() == otherPlayer()) {
+			s.setOwner(player);
+			s = neighbor(s, d);
 		}
 	}
 

@@ -3,7 +3,8 @@ import java.awt.Graphics;
 
 public class Square {
 
-	int row, column, owner;
+	final int row, column;
+	int owner;
 	int pixelsPerSquare = 40;
 	boolean legalMove;
 
@@ -14,6 +15,7 @@ public class Square {
 	}
 
 	public void paint(Graphics g, boolean showLegalMoves) {
+		System.out.println("painting x = " + column + ", y = " + row);
 		if ((row % 2) == (column % 2)) {
 			g.setColor(Color.WHITE);
 		} else {
