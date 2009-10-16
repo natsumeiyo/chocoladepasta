@@ -23,11 +23,7 @@ public class Reversi extends Applet implements ActionListener {
 		help = new Button("Help");
 		add(help);
 		help.addActionListener(this);
-		
-//		status = new Label("blabla", Label.CENTER);
-//		add(status);
-//		status.setBackground(Color.WHITE);
-
+	
 		gameBoard = new GameBoard(6, 6);
 		add(gameBoard);
 	}
