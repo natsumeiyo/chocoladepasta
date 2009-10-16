@@ -75,7 +75,7 @@ public class Reversi extends Applet implements ActionListener, MouseListener {
 	private void playBach() {
 		if (bach == null) {
 			// load inspirational music
-			bach = getAudioClip(getDocumentBase(), "bach.mid");			
+			bach = getAudioClip(Reversi.class.getResource("bach.mid"));			
 		}
 		bach.loop();
 		play = true;
