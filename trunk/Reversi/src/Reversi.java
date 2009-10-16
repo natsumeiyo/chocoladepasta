@@ -16,6 +16,7 @@ public class Reversi extends Applet implements ActionListener, MouseListener {
 	Button newGame, pass, help, inspiration;
 	Label status;
 	boolean play;
+	private AudioClip bach;
 
 	public void init() {
 		play = false;
@@ -70,18 +71,30 @@ public class Reversi extends Applet implements ActionListener, MouseListener {
 		}
 		return value;
 	}
+	
+	private void playBach() {
+		if (bach == null) {
+			// load inspirational music
+			bach = getAudioClip(getDocumentBase(), "bach.mid");			
+		}
+		bach.loop();
+		play = true;
+	}
+	
+	private void stopBach() {
+		if (bach != null) {
+			bach.stop();
+			play = false;
+		}
+	}
 
 	public void actionPerformed(ActionEvent e) {
-		
-		// load inspirational music
-		AudioClip bach = getAudioClip(getDocumentBase(), "bach.mid");
 		
 		if (e.getSource() == newGame) {
 			// reset game
 			gameBoard.setUpGameboard();
 			status.setText("RED has 2 stones\nBLUE has 2 stones\n\nRED's turn");
-			bach.stop();
-			play = false;
+			stopBach();
 		} else {
 			if (e.getSource() == help) {
 				// toggle the legal move option
@@ -94,11 +107,9 @@ public class Reversi extends Applet implements ActionListener, MouseListener {
 		if (e.getSource() == inspiration) {
 			// does the player call for inspirational music?
 			if (!play) {
-				bach.loop();
-				play = true;
+				playBach();
 			} else {
-				bach.stop();
-				play = false;
+				stopBach();
 			}
 			
 		}
