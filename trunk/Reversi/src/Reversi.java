@@ -2,11 +2,11 @@ import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Reversi extends Applet implements ActionListener {
+public class Reversi extends Applet implements ActionListener, MouseListener {
 
 	GameBoard gameBoard;
 	Button newGame, pass, help;
-	Label status;
+	public Label status;
 
 	public void init() {
 		
@@ -23,9 +23,15 @@ public class Reversi extends Applet implements ActionListener {
 		help = new Button("Help");
 		add(help);
 		help.addActionListener(this);
+		
+		status = new Label("RED has 2 stones\nBLUE has 2 stones\nRED's turn");
+		add(status);
+		status.setBackground(Color.WHITE);
 	
 		gameBoard = new GameBoard(6, 6);
 		add(gameBoard);
+		
+		gameBoard.addMouseListener(this);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -45,6 +51,23 @@ public class Reversi extends Applet implements ActionListener {
 	}
 
 	
-	private static final long serialVersionUID = 1;
 
+	public void mouseClicked(MouseEvent e) {	
+		gameBoard.squareClicked(e.getX(), e.getY());
+		status.setText(gameBoard.getStatusText());
+	}
+
+	public void mouseEntered(MouseEvent e) {		
+	}
+
+	public void mouseExited(MouseEvent e) {		
+	}
+
+	public void mousePressed(MouseEvent e) {	
+	}
+
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	private static final long serialVersionUID = 1;
 }

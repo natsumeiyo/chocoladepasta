@@ -15,7 +15,7 @@ public class Square {
 	}
 
 	public void paint(Graphics g, boolean showLegalMoves) {
-		System.out.println("painting x = " + column + ", y = " + row);
+
 		if ((row % 2) == (column % 2)) {
 			g.setColor(Color.WHITE);
 		} else {
