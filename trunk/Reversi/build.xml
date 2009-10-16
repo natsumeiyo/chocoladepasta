@@ -1,0 +1,7 @@
+<project name="Reversi" default="jar">
+
+	<target name="jar">
+		<jar destfile="Reversi.jar" basedir="bin" />
+	</target>
+
+</project>
