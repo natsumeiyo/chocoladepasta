@@ -6,7 +6,6 @@ public class Square {
 	final int row, column;
 	int owner;
 	int pixelsPerSquare = 40;
-	boolean legalMove;
 
 	public Square(int r, int c, int o) {
 		row = r;
@@ -14,7 +13,7 @@ public class Square {
 		owner = o;
 	}
 
-	public void paint(Graphics g, boolean showLegalMoves) {
+	public void paint(Graphics g, boolean legalMove) {
 
 		if ((row % 2) == (column % 2)) {
 			g.setColor(Color.WHITE);
@@ -31,13 +30,13 @@ public class Square {
 			if (owner == 2) {
 				g.setColor(new Color(50, 50, 255));
 			}
-			g.fillOval(pixelsPerSquare * (column) + 4, pixelsPerSquare * (row)
+			g.fillOval(pixelsPerSquare * column + 4, pixelsPerSquare * row
 					+ 4, pixelsPerSquare - 10, pixelsPerSquare - 10);
 		}
 		
-		if (legalMove && showLegalMoves) {
+		if (legalMove) {
 			g.setColor(Color.BLACK);
-			g.drawOval(pixelsPerSquare * (column) + 9, pixelsPerSquare * (row)
+			g.drawOval(pixelsPerSquare * column + 9, pixelsPerSquare * row
 					+ 9, pixelsPerSquare - 20, pixelsPerSquare - 20);
 		}
 

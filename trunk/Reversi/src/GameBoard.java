@@ -99,13 +99,7 @@ public class GameBoard extends Canvas {
 
 		for (int r = 0; r < numberOfRows; r++) {
 			for (int c = 0; c < numberOfColumns; c++) {
-				board[r][c].legalMove = legalMove(board[r][c]);
-			}
-		}
-
-		for (int r = 0; r < numberOfRows; r++) {
-			for (int c = 0; c < numberOfColumns; c++) {
-				board[r][c].paint(g, showLegalMoves);
+				board[r][c].paint(g, showLegalMoves && legalMove(board[r][c]));
 			}
 		}
 
