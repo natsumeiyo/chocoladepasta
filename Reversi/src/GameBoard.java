@@ -5,7 +5,7 @@ public class GameBoard extends Canvas {
 	int pixelsPerSquare, canvasWidth, canvasHeight;
 	int numberOfRows, numberOfColumns;
 	int player;
-	boolean showLegalMoves;
+	boolean showLegalMoves, endGame;
 
 	Square[][] board;
 
@@ -105,7 +105,7 @@ public class GameBoard extends Canvas {
 
 		for (int r = 0; r < numberOfRows; r++) {
 			for (int c = 0; c < numberOfColumns; c++) {
-				board[r][c].paint(g2, showLegalMoves);
+				board[r][c].paint(g, showLegalMoves);
 			}
 		}
 
@@ -121,23 +121,11 @@ public class GameBoard extends Canvas {
 		return 3 - player;
 	}
 
-	public int getNumberOfRedStones() {
+	public int getNumberOfStones(int player) {
 		int i = 0;
 		for (int r = 0; r < numberOfRows; r++) {
 			for (int c = 0; c < numberOfColumns; c++) {
-				if (board[r][c].getOwner() == 1) {
-					i++;
-				}
-			}
-		}
-		return i;
-	}
-
-	public int getNumberOfBlueStones() {
-		int i = 0;
-		for (int r = 0; r < numberOfRows; r++) {
-			for (int c = 0; c < numberOfColumns; c++) {
-				if (board[r][c].getOwner() == 2) {
+				if (board[r][c].getOwner() == player) {
 					i++;
 				}
 			}
@@ -146,16 +134,16 @@ public class GameBoard extends Canvas {
 	}
 
 	public String getStatusText() {
-		String s1 = "RED has " + getNumberOfRedStones()
-				+ " stones\nBLUE has " + getNumberOfBlueStones() + " stones";
+		String s1 = "RED has " + getNumberOfStones(1)
+				+ " stones\nBLUE has " + getNumberOfStones(2) + " stones";
 		String s2 = "\n";
 		String s3 = "'s turn";
 		if (player == 1) {
-			s2 = "\nRED";
+			s2 = "\n\nRED";
 			return s1 + s2 + s3;
 		} else {
 			if (player == 2) {
-				s2 = "\nBLUE";
+				s2 = "\n\nBLUE";
 				return s1 + s2 + s3;
 			}
 		}
@@ -168,6 +156,7 @@ public class GameBoard extends Canvas {
 		if (legalMove(s)) {
 			doMove(s);
 		}
+
 	}
 
 	private void doMove(Square s) {
@@ -180,7 +169,42 @@ public class GameBoard extends Canvas {
 		}
 
 		player = otherPlayer();
+		
+		if (!canMove()) {
+			player = otherPlayer();
+			if (!canMove()) {
+				endGame = true;
+			}
+		}
+		
 		repaint();
+	}
+	
+	public boolean canMove() {
+		
+		for (int r = 0; r < numberOfRows; r++) {
+			for (int c = 0; c < numberOfColumns; c++) {
+				if (legalMove(board[r][c])) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public String getWinner() {
+		
+		int player1 = getNumberOfStones(1);
+		int player2 = getNumberOfStones(2);
+		
+		if (player1 > player2) {
+			return "RED wins with " + player1 + " to " + player2 + "!";
+		} else {
+			if (player1 < player2) {
+				return "RED wins with " + player2 + " to " + player1 + "!";
+			}
+		}
+		return "REMISE!";
 	}
 
 	private void doMoveDirection(Square s, Direction d) {
@@ -192,4 +216,5 @@ public class GameBoard extends Canvas {
 	}
 
 	private static final long serialVersionUID = 1;
+
 }
