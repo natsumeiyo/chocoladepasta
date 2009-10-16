@@ -20,6 +20,7 @@ public class Reversi extends Applet implements ActionListener, MouseListener {
 		setBackground(new Color(240, 240, 240));
 		setLayout(new BorderLayout());
 
+		// button panel
 		buttons = new Panel();
 		buttons.setLayout(new FlowLayout());
 
@@ -33,12 +34,12 @@ public class Reversi extends Applet implements ActionListener, MouseListener {
 
 		add(buttons, BorderLayout.NORTH);
 
-		
+		// game status label
 		status = new Label("RED has 2 stones\nBLUE has 2 stones\n\nRED's turn",
 				Label.CENTER);
 		add(status, BorderLayout.CENTER);
 
-		
+		// gameboard panel
 		canvas = new Panel();
 		canvas.setLayout(new FlowLayout());
 		gameBoard = new GameBoard(
@@ -47,7 +48,7 @@ public class Reversi extends Applet implements ActionListener, MouseListener {
 		canvas.add(gameBoard);
 		add(canvas, BorderLayout.SOUTH);
 
-		
+		// listen to mouse
 		gameBoard.addMouseListener(this);
 	}
 

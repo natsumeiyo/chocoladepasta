@@ -44,14 +44,17 @@ public class Square {
 	}
 
 	public boolean isFree() {
+		// is particular square free?
 		return owner == 0;
 	}
 	
 	public int getOwner() {
+		// get owner of particular square
 		return owner;
 	}
 
 	public void setOwner(int o) {
+		// set owner of particular square
 		owner = o;
 	}
 
