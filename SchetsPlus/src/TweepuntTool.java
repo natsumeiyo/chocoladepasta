@@ -1,5 +1,7 @@
 import java.awt.*;
 
+import tamar.schetsplus.elements.Line;
+
 public abstract class TweepuntTool extends StartpuntTool {
 	protected static Point minimumPunt(Point p1, Point p2) {
 		return new Point(Math.min(p1.x, p2.x), Math.min(p1.y, p2.y));
@@ -27,7 +29,7 @@ public abstract class TweepuntTool extends StartpuntTool {
 	}
 
 	public void tekenFiguur(SchetsCanv canvas, Point p1, Point p2) {
-		this.tekenFiguur(canvas.getBitmapGraphics(), p1, p2);
+		canvas.getSchets().addElement(new Line(p1, p2));
 	}
 
 	public void tekenFiguur(Graphics g, Point p1, Point p2) {

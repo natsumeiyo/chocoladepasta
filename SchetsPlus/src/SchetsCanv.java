@@ -37,6 +37,10 @@ class SchetsCanv extends JPanel {
 		return g;
 	}
 
+	public Schets getSchets() {
+		return schets;
+	}
+	
 	public void setPenkleur(Color c) {
 		penkleur = c;
 	}
