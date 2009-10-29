@@ -13,15 +13,18 @@ public abstract class TweepuntTool extends StartpuntTool {
 	}
 
 	public void muisVersleept(SchetsCanv canvas, Point p) {
-		Graphics g = canvas.getGraphics();
-		canvas.paint(g); // Teken het plaatje, om de vorige contour kwijt te
-							// raken
-		g.setColor(Color.GRAY);
-		this.tekenContour(g, startpunt, p);
+		
+//		Graphics g = canvas.getGraphics();
+//		canvas.paint(g); // Teken het plaatje, om de vorige contour kwijt te
+//							// raken
+//		g.setColor(Color.GRAY);
+//		this.tekenContour(g, startpunt, p);
+		currentLine.setEndPoint(p);
+		canvas.repaint();
 	}
 
 	public void muisLosgelaten(SchetsCanv canvas, Point p) {
-		this.tekenFiguur(canvas, startpunt, p);
+		this.tekenFiguur(canvas, p, p);
 		canvas.repaint();
 	}
 
@@ -29,7 +32,6 @@ public abstract class TweepuntTool extends StartpuntTool {
 	}
 
 	public void tekenFiguur(SchetsCanv canvas, Point p1, Point p2) {
-		canvas.getSchets().addElement(new Line(p1, p2));
 	}
 
 	public void tekenFiguur(Graphics g, Point p1, Point p2) {

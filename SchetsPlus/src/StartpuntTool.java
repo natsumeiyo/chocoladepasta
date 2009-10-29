@@ -1,9 +1,13 @@
 import java.awt.*;
 
+import tamar.schetsplus.elements.Line;
+
 public abstract class StartpuntTool implements Tool {
-	protected Point startpunt;
+	
+	protected Line currentLine;
 
 	public void muisIngedrukt(SchetsCanv canvas, Point p) {
-		startpunt = p;
+		currentLine = new Line(p, p);
+		canvas.getSchets().addElement(currentLine);
 	}
 }

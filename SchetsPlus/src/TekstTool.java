@@ -5,7 +5,7 @@ class TekstTool extends StartpuntTool {
 	private Font font = new Font("Helvetica", Font.BOLD, 24);
 
 	public void letterIngetikt(SchetsCanv canvas, char c) {
-		startpunt.x += this.tekenTekst(canvas, startpunt, "" + c);
+//		startpunt.x += this.tekenTekst(canvas, p, "" + c);
 		canvas.repaint();
 	}
 

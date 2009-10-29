@@ -21,6 +21,10 @@ class SchetsCanv extends JPanel {
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.setStroke(new BasicStroke(1f));
 		
+		g2.setColor(Color.WHITE);
+		g2.fillRect(0, 0, getWidth(), getHeight());
+		
+		g2.setColor(Color.BLACK);
 		schets.teken(g2);
 		
 	}
