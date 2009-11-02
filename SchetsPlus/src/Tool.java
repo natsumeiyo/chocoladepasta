@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Point;
 
 import tamar.schetsplus.elements.Element;
@@ -14,5 +15,7 @@ public interface Tool {
 	void muisVersleept(SchetsCanv canvas, Point p);
 
 	void letterIngetikt(SchetsCanv canvas, char c);
+	
+//	void drawLogo(Graphics2D g);
 }
 

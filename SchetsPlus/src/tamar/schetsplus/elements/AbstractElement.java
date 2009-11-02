@@ -12,4 +12,8 @@ public abstract class AbstractElement implements Element {
 		this.p2 = p2;
 	}
 	
+	public Color getColor() {
+		return elementColor;
+	}
+	
 }

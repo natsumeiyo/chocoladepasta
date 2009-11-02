@@ -13,10 +13,13 @@ class Schets {
 		elements = new LinkedList<Element>();
 	}
 
-	public void teken(Graphics g) {
+	public void teken(Graphics g1) {
+		System.out.println("Schets bevat " + elements.size() + " elementen.");
+		Graphics2D g = (Graphics2D) g1;
 		for (Element e : elements) {
-			System.out.println("Teken: " + e);
-			e.paint((Graphics2D) g);
+//			System.out.println("Teken: " + e);
+			g.setColor(e.getColor());
+			e.paint(g);
 		}
 	}
 
