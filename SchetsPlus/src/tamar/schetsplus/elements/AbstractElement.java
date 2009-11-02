@@ -3,7 +3,7 @@ package tamar.schetsplus.elements;
 import java.awt.Color;
 import java.awt.Point;
 
-public abstract class ElementTool implements Element {
+public abstract class AbstractElement implements Element {
 
 	protected Point p1, p2;
 	protected Color elementColor;

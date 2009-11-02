@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Line extends ElementTool {
+public class Line extends AbstractElement {
 	
 	private Color elementColor;
 	

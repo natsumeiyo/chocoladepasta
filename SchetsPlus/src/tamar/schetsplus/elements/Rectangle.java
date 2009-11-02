@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Rectangle extends ElementTool {
+public class Rectangle extends AbstractElement {
 	
 	protected Color elementColor;
 	
