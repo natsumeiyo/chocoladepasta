@@ -62,13 +62,13 @@ public class SchetsApplet extends JApplet implements MouseListener,
 				getImageIcon("pen.gif")));
 		result.add(new ToolAktie(this, "Lijn", "Lijntekening", new LijnTool()));
 		result.add(new ToolAktie(this, "Open rect", "Open rechthoek",
-				new RectTool()));
+				new RectTool(false)));
 		result.add(new ToolAktie(this, "Fill rect", "Gevulde rechthoek",
-				new FillRectTool()));
+				new RectTool(true)));
 		result.add(new ToolAktie(this, "Open oval", "Open ovaal",
-				new OvalTool()));
+				new OvalTool(false)));
 		result.add(new ToolAktie(this, "Fill oval", "Gevulde ovaal",
-				new FillOvalTool()));
+				new OvalTool(true)));
 		result.add(new ToolAktie(this, "Tekst", "Tekst", new TekstTool()));
 		result.add(new ToolAktie(this, "Gum", "Uitgummen van de tekening",
 				new GumTool(), getImageIcon("gum.gif")));
