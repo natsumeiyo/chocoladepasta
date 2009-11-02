@@ -1,7 +1,5 @@
 import java.awt.*;
 
-import tamar.schetsplus.elements.Line;
-
 public abstract class TweepuntTool extends StartpuntTool {
 	protected static Point minimumPunt(Point p1, Point p2) {
 		return new Point(Math.min(p1.x, p2.x), Math.min(p1.y, p2.y));
@@ -13,12 +11,6 @@ public abstract class TweepuntTool extends StartpuntTool {
 	}
 
 	public void muisVersleept(SchetsCanv canvas, Point p) {
-		
-//		Graphics g = canvas.getGraphics();
-//		canvas.paint(g); // Teken het plaatje, om de vorige contour kwijt te
-//							// raken
-//		g.setColor(Color.GRAY);
-//		this.tekenContour(g, startpunt, p);
 		element.setEndPoint(p);
 		canvas.repaint();
 	}

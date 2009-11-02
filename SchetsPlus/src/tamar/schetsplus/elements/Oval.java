@@ -1,13 +1,12 @@
 package tamar.schetsplus.elements;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
 public class Oval extends ElementTool {
 	
-	private Color elementColor;
+	protected Color elementColor;
 	
 	public Oval(Point p1, Point p2, Color c) {
 		this.p1 = p1;
@@ -17,7 +16,7 @@ public class Oval extends ElementTool {
 
 	public void paint(Graphics2D g) {
 		g.setColor(elementColor);
-		g.drawOval(p1.x, p1.y, p2.x, p2.y);
+		g.drawOval(p1.x, p1.y, Math.abs(p2.x - p1.x), Math.abs(p2.y - p1.y));
 	}
 
 }

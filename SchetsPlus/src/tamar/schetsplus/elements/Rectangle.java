@@ -6,7 +6,7 @@ import java.awt.Point;
 
 public class Rectangle extends ElementTool {
 	
-	private Color elementColor;
+	protected Color elementColor;
 	
 	public Rectangle(Point p1, Point p2, Color c) {
 		this.p1 = p1;
@@ -16,7 +16,7 @@ public class Rectangle extends ElementTool {
 
 	public void paint(Graphics2D g) {
 		g.setColor(elementColor);
-		g.drawRect(p1.x, p1.y, p2.x, p2.y);
+		g.drawRect(p1.x, p1.y, Math.abs(p2.x - p1.x), Math.abs(p2.y - p1.y));
 	}
 
 }
