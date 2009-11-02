@@ -1,7 +1,11 @@
 import java.awt.*;
 import java.awt.font.*;
 
+import tamar.schetsplus.elements.Element;
+import tamar.schetsplus.elements.Text;
+
 class TekstTool extends StartpuntTool {
+		
 	private Font font = new Font("Helvetica", Font.BOLD, 24);
 
 	public void letterIngetikt(SchetsCanv canvas, char c) {
@@ -26,4 +30,10 @@ class TekstTool extends StartpuntTool {
 	public void tekenTekst(Graphics g, Point p, String s) {
 		g.drawString(s, p.x, p.y);
 	}
+
+	public Element createElement(Point p1, Point p2, Color c) {
+		return new Text();
+	}
+
+
 }

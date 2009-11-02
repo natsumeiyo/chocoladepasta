@@ -19,9 +19,10 @@ public abstract class TweepuntTool extends StartpuntTool {
 //							// raken
 //		g.setColor(Color.GRAY);
 //		this.tekenContour(g, startpunt, p);
-		currentLine.setEndPoint(p);
+//		element.setEndPoint(p);
 		canvas.repaint();
 	}
+
 
 	public void muisLosgelaten(SchetsCanv canvas, Point p) {
 		this.tekenFiguur(canvas, p, p);

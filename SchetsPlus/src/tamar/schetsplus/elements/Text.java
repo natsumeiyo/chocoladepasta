@@ -2,9 +2,12 @@ package tamar.schetsplus.elements;
 
 import java.awt.Graphics2D;
 
-public class Text implements Element {
+public class Text extends ElementTool {
 
-	public void paint(Graphics2D g) {		
+	public void paint(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
 	}
+
 
 }
