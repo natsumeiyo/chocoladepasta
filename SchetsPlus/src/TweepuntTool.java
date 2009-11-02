@@ -19,7 +19,7 @@ public abstract class TweepuntTool extends StartpuntTool {
 //							// raken
 //		g.setColor(Color.GRAY);
 //		this.tekenContour(g, startpunt, p);
-//		element.setEndPoint(p);
+		element.setEndPoint(p);
 		canvas.repaint();
 	}
 

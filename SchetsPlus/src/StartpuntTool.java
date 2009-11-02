@@ -3,9 +3,11 @@ import java.awt.*;
 import tamar.schetsplus.elements.*;
 
 public abstract class StartpuntTool implements Tool {
+	
+	protected Element element;
 
 	public void muisIngedrukt(SchetsCanv canvas, Point p) {
-		Element element = createElement(p, p, canvas.getPenkleur());
+		element = createElement(p, p, canvas.getPenkleur());
 		canvas.getSchets().addElement(element);
 	}
 }
