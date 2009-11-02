@@ -43,10 +43,11 @@ public class SchetsApplet extends JApplet implements MouseListener,
 
 	private ImageIcon getImageIcon(String filename) {
 		try {
-			if (isDeelVanApplicatie)
-				return new ImageIcon(filename);
-			else
+			if (isDeelVanApplicatie) {
+				return new ImageIcon(getClass().getResource(filename));
+			} else {
 				return new ImageIcon(new URL(this.getCodeBase(), filename));
+			}
 		} catch (Exception e) {
 			return null;
 		}
