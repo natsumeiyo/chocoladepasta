@@ -9,14 +9,14 @@ public class Oval extends AbstractElement {
 	private boolean filled;
 
 	public Oval(Point p1, Point p2, Color c, boolean filled) {
+		super(c);
 		this.p1 = p1;
 		this.p2 = p2;
 		this.filled = filled;
-		elementColor = c;
 	}
 
 	public void paint(Graphics2D g) {
-		g.setColor(elementColor);
+		g.setColor(getColor());
 		if (filled) {
 			g.fillOval(Math.min(p1.x, p2.x), Math.min(p1.y, p2.y), Math
 					.abs(p2.x - p1.x), Math.abs(p2.y - p1.y));

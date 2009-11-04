@@ -11,8 +11,16 @@ class OvalTool extends TweepuntTool {
 		this.filled = filled;
 	}
 	
-	public Element createElement(Point p1, Point p2, Color c) {
-		return new Oval(p1, p2, c, filled);
+	public Element createElement(Point p, Color c) {
+		return new Oval(p, p, c, filled);
+	}
+
+	public void drawIcon(Graphics2D g, int x, int y, int w, int h) {
+		if (filled) {
+			g.fillOval(x + 1, y + 2, x + w - 10, y + h - 10);	
+		} else {
+			g.drawOval(x + 1, y + 2, x + w - 10, y + h - 10);	
+		}
 	}
 
 //	public void tekenContour(Graphics g, Point p1, Point p2) {

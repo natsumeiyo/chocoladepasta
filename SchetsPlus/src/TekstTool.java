@@ -31,8 +31,11 @@ class TekstTool extends StartpuntTool {
 		g.drawString(s, p.x, p.y);
 	}
 
-	public Element createElement(Point p1, Point p2, Color c) {
-		return new Text();
+	public Element createElement(Point p, Color c) {
+		return new Text(c);
+	}
+
+	public void drawIcon(Graphics2D g, int x, int y, int w, int h) {		
 	}
 
 

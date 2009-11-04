@@ -1,11 +1,12 @@
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Point;
 
 import tamar.schetsplus.elements.Element;
 
 public interface Tool {
 	
-	Element createElement(Point p1, Point p2, Color c);
+	Element createElement(Point p, Color c);
 	
 	void muisIngedrukt(SchetsCanv canvas, Point p);
 
@@ -15,6 +16,5 @@ public interface Tool {
 
 	void letterIngetikt(SchetsCanv canvas, char c);
 	
-//	void drawLogo(Graphics2D g);
+	void drawIcon(Graphics2D g, int x, int y, int w, int h);
 }
-

@@ -1,6 +1,11 @@
 import java.awt.*;
 
 public class TekstIcon extends ToolIcon {
+	
+	public TekstIcon(Tool tool) {
+		super(tool);
+	}
+
 	public void paintIcon(Component c, Graphics g, int x, int y) {
 		int w = this.getIconWidth(), h = this.getIconHeight();
 		g.setColor(c.getBackground());

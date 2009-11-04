@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Point;
 
 import tamar.schetsplus.elements.Element;
@@ -6,9 +7,9 @@ import tamar.schetsplus.elements.Pen;
 
 public class PenTool extends StartpuntTool {
 
-	public Element createElement(Point p1, Point p2, Color c) {
+	public Element createElement(Point p, Color c) {
 		Pen pen = new Pen(c);
-		pen.addPoint(p1);
+		pen.addPoint(p);
 		return pen;
 	}
 
@@ -21,5 +22,8 @@ public class PenTool extends StartpuntTool {
 	public void muisVersleept(SchetsCanv canvas, Point p) {
 		((Pen) element).addPoint(p);
 		canvas.repaint();
+	}
+
+	public void drawIcon(Graphics2D g, int x, int y, int w, int h) {		
 	}
 }

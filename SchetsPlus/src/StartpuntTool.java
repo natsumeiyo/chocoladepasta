@@ -7,7 +7,7 @@ public abstract class StartpuntTool implements Tool {
 	protected Element element;
 
 	public void muisIngedrukt(SchetsCanv canvas, Point p) {
-		element = createElement(p, p, canvas.getPenkleur());
+		element = createElement(p, canvas.getPenkleur());
 		canvas.getSchets().addElement(element);
 	}
 }

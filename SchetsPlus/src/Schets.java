@@ -7,7 +7,7 @@ import tamar.schetsplus.elements.Element;
 
 class Schets {
 //	private BufferedImage bitmap;
-	private List<Element> elements;
+	protected List<Element> elements;
 
 	Schets() {
 		elements = new LinkedList<Element>();

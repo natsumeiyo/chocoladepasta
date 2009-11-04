@@ -75,6 +75,7 @@ public class SchetsApplet extends JApplet implements MouseListener,
 		return result;
 	}
 
+
 	private Collection<ControlAktie> maakControlAkties() {
 		LinkedList<ControlAktie> result;
 		result = new LinkedList<ControlAktie>();

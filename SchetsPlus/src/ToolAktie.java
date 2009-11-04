@@ -16,12 +16,12 @@ public class ToolAktie extends AbstractAction {
 
 	public ToolAktie(SchetsApplet applet, String naam, String tip,
 			TweepuntTool tool) {
-		this(applet, naam, tip, tool, new TweepuntIcon(tool));
+		this(applet, naam, tip, tool, new ToolIcon(tool));
 	}
 
 	public ToolAktie(SchetsApplet applet, String naam, String tip,
 			TekstTool tool) {
-		this(applet, naam, tip, tool, new TekstIcon());
+		this(applet, naam, tip, tool, new TekstIcon(tool));
 	}
 
 	public void actionPerformed(ActionEvent event) {

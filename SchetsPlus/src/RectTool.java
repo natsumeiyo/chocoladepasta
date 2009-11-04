@@ -11,9 +11,16 @@ class RectTool extends TweepuntTool {
 		this.filled = filled;
 	}
 		
-	public Element createElement(Point p1, Point p2, Color c) {
-		return new Rectangle (p1, p2, c, filled);
+	public Element createElement(Point p, Color c) {
+		return new Rectangle (p, p, c, filled);
 	}
+
+	public void drawIcon(Graphics2D g, int x, int y, int w, int h) {
+		if (filled) {
+			g.fillRect(x + 1, y + 2, x + w - 10, y + h - 10);	
+		} else {
+			g.drawRect(x + 1, y + 2, x + w - 10, y + h - 10);	
+		}	}
 	
 //	public void tekenContour(Graphics g, Point p1, Point p2) {
 //		Point xy = minimumPunt(p1, p2);

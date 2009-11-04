@@ -11,12 +11,12 @@ public class Pen extends AbstractElement {
 	private List<Point> points;
 
 	public Pen(Color c) {
+		super(c);
 		points = new LinkedList<Point>();
-		elementColor = c;
 	}
 
 	public void paint(Graphics2D g) {
-		g.setColor(elementColor);
+		g.setColor(getColor());
 		Point last = null;
 		for (Point p : points) {
 			if (last != null) {

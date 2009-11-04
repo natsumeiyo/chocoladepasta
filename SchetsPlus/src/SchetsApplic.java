@@ -8,6 +8,7 @@ public class SchetsApplic extends JFrame {
 		this.setBackground(Color.LIGHT_GRAY);
 		this.addWindowListener(new WindowSluiter());
 		this.getContentPane().add(new SchetsApplet(true), BorderLayout.CENTER);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
 	public static void main(String[] args) {
