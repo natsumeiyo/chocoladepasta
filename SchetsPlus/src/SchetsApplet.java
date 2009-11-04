@@ -96,6 +96,7 @@ public class SchetsApplet extends JApplet implements MouseListener,
 		controlPanel.add(new JLabel("Penkleur"));
 		JComboBox combo = new JComboBox();
 		combo.addItem(new Kleur("zwart", Color.BLACK));
+		combo.addItem(new Kleur("wit", Color.WHITE));
 		combo.addItem(new Kleur("rood", Color.RED));
 		combo.addItem(new Kleur("groen", Color.GREEN));
 		combo.addItem(new Kleur("blauw", Color.BLUE));
@@ -145,7 +146,7 @@ public class SchetsApplet extends JApplet implements MouseListener,
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		this.currentTool.muisLosgelaten(canvas, e.getPoint());
+//		this.currentTool.muisLosgelaten(canvas, e.getPoint());
 	}
 
 	public void mouseDragged(MouseEvent e) {

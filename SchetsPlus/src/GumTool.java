@@ -1,4 +1,3 @@
-import java.awt.*;
 
 public class GumTool extends PenTool {
 //	public void tekenContour(Graphics g, Point p1, Point p2) {

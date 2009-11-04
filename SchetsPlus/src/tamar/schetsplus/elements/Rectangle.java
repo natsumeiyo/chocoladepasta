@@ -19,9 +19,11 @@ public class Rectangle extends AbstractElement {
 	public void paint(Graphics2D g) {
 		g.setColor(elementColor);
 		if (filled) {
-			g.fillRect(p1.x, p1.y, Math.abs(p2.x - p1.x), Math.abs(p2.y - p1.y));
+			g.fillRect(Math.min(p1.x, p2.x), Math.min(p1.y, p2.y), Math
+					.abs(p2.x - p1.x), Math.abs(p2.y - p1.y));
 		} else {
-			g.drawRect(p1.x, p1.y, Math.abs(p2.x - p1.x), Math.abs(p2.y - p1.y));
+			g.drawRect(Math.min(p1.x, p2.x), Math.min(p1.y, p2.y), Math
+					.abs(p2.x - p1.x), Math.abs(p2.y - p1.y));
 		}
 	}
 
