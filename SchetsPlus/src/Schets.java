@@ -6,7 +6,6 @@ import java.util.List;
 import tamar.schetsplus.elements.Element;
 
 class Schets {
-//	private BufferedImage bitmap;
 	protected List<Element> elements;
 
 	Schets() {
@@ -17,7 +16,6 @@ class Schets {
 		System.out.println("Schets bevat " + elements.size() + " elementen.");
 		Graphics2D g = (Graphics2D) g1;
 		for (Element e : elements) {
-//			System.out.println("Teken: " + e);
 			g.setColor(e.getColor());
 			e.paint(g);
 		}

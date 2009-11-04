@@ -21,10 +21,4 @@ class RectTool extends TweepuntTool {
 		} else {
 			g.drawRect(x + 1, y + 2, x + w - 10, y + h - 10);	
 		}	}
-	
-//	public void tekenContour(Graphics g, Point p1, Point p2) {
-//		Point xy = minimumPunt(p1, p2);
-//		Dimension wh = puntAfstand(p1, p2);
-//		g.drawRect(xy.x, xy.y, wh.width, wh.height);
-//	}
 }

@@ -23,13 +23,4 @@ public abstract class TweepuntTool extends StartpuntTool {
 
 	public void letterIngetikt(SchetsCanv canvas, char c) {
 	}
-
-//	public void tekenFiguur(SchetsCanv canvas, Point p1, Point p2) {
-//	}
-
-//	public void tekenFiguur(Graphics g, Point p1, Point p2) {
-//		this.tekenContour(g, p1, p2);
-//	}
-
-//	public abstract void tekenContour(Graphics g, Point p1, Point p2);
 }
