@@ -35,7 +35,9 @@ class TekstTool extends StartpuntTool {
 		return new Text(c);
 	}
 
-	public void drawIcon(Graphics2D g, int x, int y, int w, int h) {		
+	public void drawIcon(Graphics2D g, int x, int y, int w, int h) {
+		g.setFont(new Font("Helvetica", Font.BOLD, h - 5));
+		g.drawString("Tx", x + 2, y + h - 2);
 	}
 
 
