@@ -6,14 +6,13 @@ import java.awt.Point;
 
 public class Rectangle extends AbstractElement {
 	
-	protected Color elementColor;
 	private boolean filled;
 	
 	public Rectangle(Point p1, Point p2, Color c, boolean filled) {
 		this.p1 = p1;
 		this.p2 = p2;
-		elementColor = c;
 		this.filled = filled;
+		elementColor = c;
 	}
 
 	public void paint(Graphics2D g) {
@@ -26,5 +25,17 @@ public class Rectangle extends AbstractElement {
 					.abs(p2.x - p1.x), Math.abs(p2.y - p1.y));
 		}
 	}
+
+	public boolean hits(Point mp) {
+		if (filled && mp.x > p1.x && mp.x < p2.x && mp.y > p1.y && mp.y < p2.y) {
+			return true;
+		}	
+		if ((mp.x == p1.x || mp.x == p2.x) && (mp.y == p1.y || mp.y == p2.y)) {
+			return true;
+		}
+		return false;
+	}
+	
+	
 
 }

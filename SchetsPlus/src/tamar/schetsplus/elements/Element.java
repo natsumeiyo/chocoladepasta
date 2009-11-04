@@ -12,6 +12,6 @@ public interface Element {
 	
 	public Color getColor();
 	
-//	public boolean hits(Point p);
+	public boolean hits(Point p);
 
 }

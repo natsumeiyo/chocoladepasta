@@ -6,14 +6,13 @@ import java.awt.Point;
 
 public class Oval extends AbstractElement {
 
-	protected Color elementColor;
 	private boolean filled;
 
 	public Oval(Point p1, Point p2, Color c, boolean filled) {
 		this.p1 = p1;
 		this.p2 = p2;
-		elementColor = c;
 		this.filled = filled;
+		elementColor = c;
 	}
 
 	public void paint(Graphics2D g) {
@@ -25,6 +24,16 @@ public class Oval extends AbstractElement {
 			g.drawOval(Math.min(p1.x, p2.x), Math.min(p1.y, p2.y), Math
 					.abs(p2.x - p1.x), Math.abs(p2.y - p1.y));
 		}
+	}
+
+	public boolean hits(Point mp) {
+		if (filled) {
+			
+		}
+//		if () {
+//			
+//		}	
+		return false;
 	}
 
 }

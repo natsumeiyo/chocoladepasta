@@ -16,6 +16,7 @@ public class Pen extends AbstractElement {
 	}
 
 	public void paint(Graphics2D g) {
+		g.setColor(elementColor);
 		Point last = null;
 		for (Point p : points) {
 			if (last != null) {
@@ -27,6 +28,16 @@ public class Pen extends AbstractElement {
 	
 	public void addPoint(Point p) {
 		points.add(p);
+	}
+
+	public boolean hits(Point mp) {
+		for (Point p : points) {
+			if (mp == p) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }

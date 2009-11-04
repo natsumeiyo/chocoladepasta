@@ -39,6 +39,10 @@ class Schets {
 		elements.add(e);
 	}
 	
+	public void eraseElement(Element e) {
+		elements.remove(e);
+	}
+	
 	public Graphics getBitmapGraphics() {
 //		return bitmap.getGraphics();
 		return null;
