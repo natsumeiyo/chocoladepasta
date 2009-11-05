@@ -18,19 +18,21 @@ public class Oval extends AbstractElement {
 	public void paint(Graphics2D g) {
 		g.setColor(getColor());
 		if (filled) {
-			g.fillOval(upperLeftPoint.x, upperLeftPoint.y, dimension.width, dimension.height);
+			g.fillOval(getMin().x, getMin().y, dimension().width,
+					dimension().height);
 		} else {
-			g.drawOval(upperLeftPoint.x, upperLeftPoint.y, dimension.width, dimension.height);
+			g.drawOval(getMin().x, getMin().y, dimension().width,
+					dimension().height);
 		}
 	}
 
 	public boolean isHitBy(Point mp) {
 		if (filled) {
-			
+
 		}
-//		if () {
-//			
-//		}	
+		// if () {
+		//			
+		// }
 		return false;
 	}
 

@@ -15,8 +15,10 @@ public interface Element {
 	
 	public boolean isHitBy(Point p);
 	
-	Point upperLeftPoint(Point p1, Point p2);
+	public Point getMin();
+	
+	public Point getMax();
 
-	Dimension dimension(Point p1, Point p2);
+	Dimension dimension();
 
 }

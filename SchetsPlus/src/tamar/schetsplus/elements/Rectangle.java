@@ -18,14 +18,17 @@ public class Rectangle extends AbstractElement {
 	public void paint(Graphics2D g) {
 		g.setColor(getColor());
 		if (filled) {
-			g.fillRect(upperLeftPoint.x, upperLeftPoint.y, dimension.width, dimension.height);
+			g.fillRect(getMin().x, getMin().y,
+					dimension().width, dimension().height);
 		} else {
-			g.drawRect(upperLeftPoint.x, upperLeftPoint.y, dimension.width, dimension.height);
+			g.drawRect(getMin().x, getMin().y,
+					dimension().width, dimension().height);
 		}
 	}
 
 	public boolean isHitBy(Point mp) {
-		if (filled && mp.x > p1.x && mp.x < p2.x && mp.y > p1.y && mp.y < p2.y) {
+		if (filled && mp.x > getMin().x && mp.x < getMax().x
+				&& mp.y > getMin().y && mp.y < getMax().y) {
 			return true;
 		}
 		if ((mp.x == p1.x || mp.x == p2.x) && (mp.y == p1.y || mp.y == p2.y)) {
