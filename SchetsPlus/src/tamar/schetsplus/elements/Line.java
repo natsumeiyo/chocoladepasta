@@ -17,7 +17,7 @@ public class Line extends AbstractElement {
 		g.drawLine(p1.x, p1.y, p2.x, p2.y);
 	}
 
-	public boolean hits(Point p) {
+	public boolean isHitBy(Point p) {
 		// TODO Auto-generated method stub
 		return false;
 	}

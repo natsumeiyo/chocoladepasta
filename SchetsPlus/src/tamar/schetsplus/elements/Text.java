@@ -16,7 +16,7 @@ public class Text extends AbstractElement {
 		
 	}
 
-	public boolean hits(Point p) {
+	public boolean isHitBy(Point p) {
 		// TODO Auto-generated method stub
 		return false;
 	}

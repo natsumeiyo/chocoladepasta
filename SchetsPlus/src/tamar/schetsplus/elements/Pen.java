@@ -30,7 +30,7 @@ public class Pen extends AbstractElement {
 		points.add(p);
 	}
 
-	public boolean hits(Point mp) {
+	public boolean isHitBy(Point mp) {
 		for (Point p : points) {
 			if (mp == p) {
 				return true;

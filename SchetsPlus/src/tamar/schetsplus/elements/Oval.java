@@ -18,15 +18,13 @@ public class Oval extends AbstractElement {
 	public void paint(Graphics2D g) {
 		g.setColor(getColor());
 		if (filled) {
-			g.fillOval(Math.min(p1.x, p2.x), Math.min(p1.y, p2.y), Math
-					.abs(p2.x - p1.x), Math.abs(p2.y - p1.y));
+			g.fillOval(upperLeftPoint.x, upperLeftPoint.y, dimension.width, dimension.height);
 		} else {
-			g.drawOval(Math.min(p1.x, p2.x), Math.min(p1.y, p2.y), Math
-					.abs(p2.x - p1.x), Math.abs(p2.y - p1.y));
+			g.drawOval(upperLeftPoint.x, upperLeftPoint.y, dimension.width, dimension.height);
 		}
 	}
 
-	public boolean hits(Point mp) {
+	public boolean isHitBy(Point mp) {
 		if (filled) {
 			
 		}

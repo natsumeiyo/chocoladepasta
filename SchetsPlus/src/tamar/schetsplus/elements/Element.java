@@ -1,6 +1,7 @@
 package tamar.schetsplus.elements;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
@@ -12,6 +13,10 @@ public interface Element {
 	
 	public Color getColor();
 	
-	public boolean hits(Point p);
+	public boolean isHitBy(Point p);
+	
+	Point upperLeftPoint(Point p1, Point p2);
+
+	Dimension dimension(Point p1, Point p2);
 
 }

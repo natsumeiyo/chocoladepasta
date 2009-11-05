@@ -4,6 +4,7 @@ import java.util.*;
 import java.net.URL;
 import javax.swing.*;
 
+
 public class SchetsApplet extends JApplet implements MouseListener,
 		MouseMotionListener, ItemListener, KeyListener {
 	SchetsCanv canvas;
