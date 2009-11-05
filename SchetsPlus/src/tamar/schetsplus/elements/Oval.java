@@ -1,8 +1,12 @@
 package tamar.schetsplus.elements;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Shape;
+import java.awt.Stroke;
+import java.awt.geom.Ellipse2D;
 
 public class Oval extends AbstractElement {
 
@@ -28,12 +32,15 @@ public class Oval extends AbstractElement {
 
 	public boolean isHitBy(Point mp) {
 		if (filled) {
-
+			Shape shape = new Ellipse2D.Float(getMin().x,
+					getMin().y, dimension().width, dimension().height);
+			return shape.contains(mp);
+		} else {
+			Stroke s = new BasicStroke(SELECTIONMARGIN);
+			Shape shape = s.createStrokedShape(new Ellipse2D.Float(getMin().x,
+					getMin().y, dimension().width, dimension().height));
+			return shape.contains(mp);
 		}
-		// if () {
-		//			
-		// }
-		return false;
 	}
 
 }
