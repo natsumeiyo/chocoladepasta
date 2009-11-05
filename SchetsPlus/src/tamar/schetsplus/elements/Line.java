@@ -3,6 +3,7 @@ package tamar.schetsplus.elements;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.geom.Line2D;
 
 public class Line extends AbstractElement {
 		
@@ -17,9 +18,8 @@ public class Line extends AbstractElement {
 		g.drawLine(p1.x, p1.y, p2.x, p2.y);
 	}
 
-	public boolean isHitBy(Point p) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isHitBy(Point mp) {
+		return Line2D.ptSegDist(p1.x, p1.y, p2.x, p2.y, mp.x, mp.y) < SELECTIONMARGIN;
 	}
 
 }

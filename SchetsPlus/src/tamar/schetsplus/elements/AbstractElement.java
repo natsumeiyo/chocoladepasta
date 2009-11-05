@@ -8,6 +8,7 @@ public abstract class AbstractElement implements Element {
 
 	protected Point p1, p2;
 	private Color elementColor;
+	protected final static int SELECTIONMARGIN = 4;
 	
 	public AbstractElement(Color c) {
 		this.elementColor = c;

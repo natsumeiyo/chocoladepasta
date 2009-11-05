@@ -3,11 +3,12 @@ package tamar.schetsplus.elements;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.geom.Line2D;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Pen extends AbstractElement {
-	
+
 	private List<Point> points;
 
 	public Pen(Color c) {
@@ -25,19 +26,19 @@ public class Pen extends AbstractElement {
 			last = p;
 		}
 	}
-	
+
 	public void addPoint(Point p) {
 		points.add(p);
 	}
 
 	public boolean isHitBy(Point mp) {
+		Point last = null;
 		for (Point p : points) {
-			if (mp == p) {
+			if (last != null && Line2D.ptSegDist(last.x, last.y, p.x, p.y, mp.x, mp.y) < SELECTIONMARGIN) {
 				return true;
 			}
+			last = p;
 		}
-
 		return false;
 	}
-
 }
