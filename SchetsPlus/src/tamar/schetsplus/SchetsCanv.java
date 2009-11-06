@@ -1,7 +1,15 @@
 package tamar.schetsplus;
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.*;
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
 class SchetsCanv extends JPanel {
 	private Schets schets;
@@ -47,6 +55,13 @@ class SchetsCanv extends JPanel {
 		schets.clear();
 		this.repaint();
 	}
-
+	
+	public void writePNG(File f) throws IOException {
+		BufferedImage image = new BufferedImage(getWidth(), getHeight(),
+				BufferedImage.TYPE_INT_ARGB);
+		paint(image.createGraphics());
+		ImageIO.write(image, "png", f);
+	}
+	
 	private static final long serialVersionUID = 1;
 }

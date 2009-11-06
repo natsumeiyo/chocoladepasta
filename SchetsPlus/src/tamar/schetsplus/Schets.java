@@ -110,5 +110,5 @@ class Schets {
 			elements.removeLast();
 		}
 	}
-	
+
 }

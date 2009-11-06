@@ -24,6 +24,8 @@ public class FileAction extends AbstractAction {
 			putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.META_MASK));
 		} else if (naam.startsWith("Open")) {
 			putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_O, Event.META_MASK));
+		} else if (naam.startsWith("Export")) {
+			putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_E, Event.META_MASK));
 		}
 
 		chooser = new JFileChooser();
@@ -53,6 +55,17 @@ public class FileAction extends AbstractAction {
 					e.printStackTrace();
 				}
 				canvas.repaint();
+			}
+		}
+		if (naam.startsWith("Export")) {
+			int result = chooser.showSaveDialog(canvas);
+			if (result == JFileChooser.APPROVE_OPTION) {
+				File f = chooser.getSelectedFile();
+				try {
+					canvas.writePNG(f);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

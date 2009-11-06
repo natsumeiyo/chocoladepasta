@@ -22,4 +22,6 @@ public class UndoAction extends AbstractAction {
 		canvas.getSchets().eraseLastElement();
 		canvas.repaint();
 	}
+	
+	private static final long serialVersionUID = 1;
 }
