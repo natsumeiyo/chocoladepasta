@@ -1,3 +1,4 @@
+package tamar.schetsplus;
 import java.awt.*;
 
 public abstract class TweepuntTool extends StartpuntTool {

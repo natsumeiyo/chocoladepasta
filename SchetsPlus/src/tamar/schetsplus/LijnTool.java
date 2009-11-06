@@ -1,3 +1,4 @@
+package tamar.schetsplus;
 import java.awt.*;
 
 import tamar.schetsplus.elements.Element;
