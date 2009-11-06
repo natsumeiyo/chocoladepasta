@@ -1,6 +1,12 @@
 package tamar.schetsplus;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -49,5 +55,13 @@ class Schets {
 
 	public void clear() {
 		elements.clear();
+	}
+	
+	public void write(File file) throws IOException {
+		OutputStream fos = new FileOutputStream(file);
+		DataOutputStream dos = new DataOutputStream(fos);
+		for (Element e : elements) {
+				e.write(dos);
+		}
 	}
 }

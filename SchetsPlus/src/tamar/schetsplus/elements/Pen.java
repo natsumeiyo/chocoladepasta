@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Line2D;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,11 +36,22 @@ public class Pen extends AbstractElement {
 	public boolean isHitBy(Point mp) {
 		Point last = null;
 		for (Point p : points) {
-			if (last != null && Line2D.ptSegDist(last.x, last.y, p.x, p.y, mp.x, mp.y) < SELECTIONMARGIN) {
+			if (last != null
+					&& Line2D.ptSegDist(last.x, last.y, p.x, p.y, mp.x, mp.y) < SELECTIONMARGIN) {
 				return true;
 			}
 			last = p;
 		}
 		return false;
+	}
+
+	public void write(DataOutputStream dos) throws IOException {
+		dos.writeChars("Pen");
+		dos.write(getColor().getRGB());
+		for (Point p : points) {
+			dos.write(p.x);
+			dos.write(p.x);
+
+		}
 	}
 }

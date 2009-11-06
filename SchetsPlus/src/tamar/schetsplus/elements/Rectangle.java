@@ -1,9 +1,14 @@
 package tamar.schetsplus.elements;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.geom.Line2D;
+import java.awt.Shape;
+import java.awt.Stroke;
+import java.awt.geom.Rectangle2D;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class Rectangle extends AbstractElement {
 
@@ -29,17 +34,25 @@ public class Rectangle extends AbstractElement {
 
 	public boolean isHitBy(Point mp) {
 		if (filled) {
-			return (mp.x > getMin().x && mp.x < getMax().x && mp.y > getMin().y && mp.y < getMax().y);
+			Shape shape = new Rectangle2D.Float(getMin().x,
+					getMin().y, dimension().width, dimension().height);
+			return shape.contains(mp);
 		} else {
-			return Line2D.ptSegDist(getMin().x, getMin().y, getMax().x,
-					getMin().y, mp.x, mp.y) <= SELECTIONMARGIN
-					|| Line2D.ptSegDist(getMax().x, getMin().y, getMax().x,
-							getMax().y, mp.x, mp.y) <= SELECTIONMARGIN
-					|| Line2D.ptSegDist(getMax().x, getMax().y, getMin().x,
-							getMax().y, mp.x, mp.y) <= SELECTIONMARGIN
-					|| Line2D.ptSegDist(getMin().x, getMax().y, getMin().x,
-							getMin().y, mp.x, mp.y) <= SELECTIONMARGIN;
+			Stroke s = new BasicStroke(SELECTIONMARGIN);
+			Shape shape = s.createStrokedShape(new Rectangle2D.Float(getMin().x,
+					getMin().y, dimension().width, dimension().height));
+			return shape.contains(mp);
 		}
+	}
+
+	public void write(DataOutputStream dos) throws IOException {
+		dos.writeChars("Rectangle");
+		dos.writeBoolean(filled);
+		dos.write(getColor().getRGB());
+		dos.write(p1.x);
+		dos.write(p1.y);
+		dos.write(p2.x);
+		dos.write(p2.y);
 	}
 
 }

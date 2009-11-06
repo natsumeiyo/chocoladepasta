@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public interface Element {
 	
@@ -18,6 +20,8 @@ public interface Element {
 	public Point getMin();
 	
 	public Point getMax();
+	
+	public void write(DataOutputStream dos) throws IOException;
 
 	Dimension dimension();
 

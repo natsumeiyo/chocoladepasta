@@ -7,6 +7,8 @@ import java.awt.Point;
 import java.awt.Shape;
 import java.awt.Stroke;
 import java.awt.geom.Ellipse2D;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class Oval extends AbstractElement {
 
@@ -32,8 +34,8 @@ public class Oval extends AbstractElement {
 
 	public boolean isHitBy(Point mp) {
 		if (filled) {
-			Shape shape = new Ellipse2D.Float(getMin().x,
-					getMin().y, dimension().width, dimension().height);
+			Shape shape = new Ellipse2D.Float(getMin().x, getMin().y,
+					dimension().width, dimension().height);
 			return shape.contains(mp);
 		} else {
 			Stroke s = new BasicStroke(SELECTIONMARGIN);
@@ -42,5 +44,15 @@ public class Oval extends AbstractElement {
 			return shape.contains(mp);
 		}
 	}
+	
 
+	public void write(DataOutputStream dos) throws IOException {
+		dos.writeChars("Oval");
+		dos.writeBoolean(filled);
+		dos.write(getColor().getRGB());
+		dos.write(p1.x);
+		dos.write(p1.y);
+		dos.write(p2.x);
+		dos.write(p2.y);
+	}
 }
