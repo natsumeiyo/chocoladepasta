@@ -48,11 +48,11 @@ public class Rectangle extends AbstractElement {
 	public void write(DataOutputStream dos) throws IOException {
 		dos.writeUTF("Rectangle");
 		dos.writeBoolean(filled);
-		dos.write(getColor().getRGB());
-		dos.write(p1.x);
-		dos.write(p1.y);
-		dos.write(p2.x);
-		dos.write(p2.y);
+		dos.writeInt(getColor().getRGB());
+		dos.writeInt(p1.x);
+		dos.writeInt(p1.y);
+		dos.writeInt(p2.x);
+		dos.writeInt(p2.y);
 	}
 
 }

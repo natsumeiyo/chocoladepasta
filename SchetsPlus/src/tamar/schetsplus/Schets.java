@@ -81,47 +81,43 @@ class Schets {
 		DataInputStream dis = new DataInputStream(fis);
 		int numberOfElements = dis.read();
 		for (int i = 0; i < numberOfElements; i++) {
+			System.out.println(i);
 			String elementName = dis.readUTF();
 			if (elementName.equals("Rectangle")) {
 				Boolean filled = dis.readBoolean();
-				Color c = new Color(dis.read());
-				Point p1 = new Point(dis.read(), dis.read());
-				Point p2 = new Point(dis.read(), dis.read());
+				Color c = new Color(dis.readInt());
+				Point p1 = new Point(dis.readInt(), dis.readInt());
+				Point p2 = new Point(dis.readInt(), dis.readInt());
 				addElement(new Rectangle(p1, p2, c, filled));
-				elementName = dis.readUTF();
 			}
 			if (elementName.equals("Oval")) {
 				Boolean filled = dis.readBoolean();
-				Color c = new Color(dis.read());
-				Point p1 = new Point(dis.read(), dis.read());
-				Point p2 = new Point(dis.read(), dis.read());
+				Color c = new Color(dis.readInt());
+				Point p1 = new Point(dis.readInt(), dis.readInt());
+				Point p2 = new Point(dis.readInt(), dis.readInt());
 				addElement(new Oval(p1, p2, c, filled));
-				elementName = dis.readUTF();
 			}
 			if (elementName.equals("Line")) {
-				Color c = new Color(dis.read());
-				Point p1 = new Point(dis.read(), dis.read());
-				Point p2 = new Point(dis.read(), dis.read());
+				Color c = new Color(dis.readInt());
+				Point p1 = new Point(dis.readInt(), dis.readInt());
+				Point p2 = new Point(dis.readInt(), dis.readInt());
 				addElement(new Line(p1, p2, c));
-				elementName = dis.readUTF();
 			}
 			if (elementName.equals("Pen")) {
-				Color c = new Color(dis.read());
-				int numberOfPoints = dis.read();
+				Color c = new Color(dis.readInt());
+				int numberOfPoints = dis.readInt();
 				Pen pen = new Pen(c);
 				addElement(pen);
 				for (int p = 1; p < numberOfPoints; p++) {
-					pen.addPoint(new Point(dis.read(), dis.read()));
+					pen.addPoint(new Point(dis.readInt(), dis.readInt()));
 				}
-				elementName = dis.readUTF();
 			}
 			if (elementName.equals("Text")) {
-				Color c = new Color(dis.read());
-				Point p1 = new Point(dis.read(), dis.read());
+				Color c = new Color(dis.readInt());
+				Point p1 = new Point(dis.readInt(), dis.readInt());
 				addElement(new Text(p1, c));
 				String s = dis.readUTF();
 				// doe iets met de string
-				elementName = dis.readUTF();
 			}
 		}
 	}

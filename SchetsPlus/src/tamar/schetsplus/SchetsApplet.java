@@ -24,6 +24,7 @@ public class SchetsApplet extends JApplet implements MouseListener,
 
 	public void init() {
 		canvas = new SchetsCanv();
+		Collection<FileAction> files = createFileActions();
 		Collection<ToolAktie> tools = maakToolAkties();
 		Collection<ControlAktie> controls = maakControlAkties();
 
@@ -31,13 +32,20 @@ public class SchetsApplet extends JApplet implements MouseListener,
 		c.setLayout(new BorderLayout());
 		c.add(canvas, BorderLayout.CENTER);
 		c.add(maakToolBox(tools), BorderLayout.WEST);
-		c.add(maakMenuBar(tools, controls), BorderLayout.NORTH);
+		c.add(maakMenuBar(files, tools, controls), BorderLayout.NORTH);
 		c.add(maakControlPanel(controls), BorderLayout.SOUTH);
 
 		canvas.addMouseListener(this);
 		canvas.addMouseMotionListener(this);
 		canvas.addKeyListener(this);
 	}
+
+	private Collection<FileAction> createFileActions() {
+		LinkedList<FileAction> result;
+		result = new LinkedList<FileAction>();
+		result.add(new FileAction(canvas, "Save", "Save file to disk"));
+		result.add(new FileAction(canvas, "Open", "Open file from disk"));
+		return result;	}
 
 	public void setCurrentTool(Tool tool) {
 		currentTool = tool;
@@ -109,19 +117,27 @@ public class SchetsApplet extends JApplet implements MouseListener,
 		return controlPanel;
 	}
 
-	private Component maakMenuBar(Collection<ToolAktie> tools,
+	private Component maakMenuBar(Collection<FileAction> files, Collection<ToolAktie> tools,
 			Collection<ControlAktie> controls) {
 		JMenuBar menubar = new JMenuBar();
 		JMenu menu;
+		
+		menu = new JMenu("File");
+		for (Action fileAction : files) {
+			menu.add(fileAction);
+		}
+		menubar.add(menu);
 
 		menu = new JMenu("Tool");
-		for (Action tool : tools)
+		for (Action tool : tools) {
 			menu.add(tool);
+		}
 		menubar.add(menu);
 
 		menu = new JMenu("Edit");
-		for (Action ctrl : controls)
+		for (Action ctrl : controls) {
 			menu.add(ctrl);
+		}
 		menubar.add(menu);
 
 		menu = new JMenu("Help");

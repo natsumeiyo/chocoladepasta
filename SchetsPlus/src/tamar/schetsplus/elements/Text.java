@@ -27,9 +27,9 @@ public class Text extends AbstractElement {
 
 	public void write(DataOutputStream dos) throws IOException {
 		dos.writeUTF("Text");
-		dos.write(getColor().getRGB());
-		dos.write(p1.x);
-		dos.write(p1.y);
+		dos.writeInt(getColor().getRGB());
+		dos.writeInt(p1.x);
+		dos.writeInt(p1.y);
 		dos.writeUTF(s);
 	}
 }
