@@ -56,6 +56,7 @@ class Schets {
 		for (Element e : elements) {
 			e.write(dos);
 		}
+		dos.close();
 	}
 
 	public void read(File file) throws IOException {
@@ -102,5 +103,6 @@ class Schets {
 				text.setString(s);
 			}
 		}
+		dis.close();
 	}
 }
