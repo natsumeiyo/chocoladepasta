@@ -51,7 +51,7 @@ public class Pen extends AbstractElement {
 		dos.writeInt(points.size());
 		for (Point p : points) {
 			dos.writeInt(p.x);
-			dos.writeInt(p.x);
+			dos.writeInt(p.y);
 
 		}
 	}

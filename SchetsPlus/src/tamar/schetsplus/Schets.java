@@ -91,7 +91,7 @@ class Schets {
 				int numberOfPoints = dis.readInt();
 				Pen pen = new Pen(c);
 				addElement(pen);
-				for (int p = 1; p < numberOfPoints; p++) {
+				for (int p = 0; p < numberOfPoints; p++) {
 					pen.addPoint(new Point(dis.readInt(), dis.readInt()));
 				}
 			}

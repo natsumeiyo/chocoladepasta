@@ -11,6 +11,7 @@ public class SchetsApplet extends JApplet implements MouseListener,
 	SchetsCanv canvas;
 	Tool currentTool;
 	boolean isDeelVanApplicatie;
+	ColorIcon colorIcon;
 
 	public SchetsApplet() {
 		this(false);
@@ -24,9 +25,10 @@ public class SchetsApplet extends JApplet implements MouseListener,
 
 	public void init() {
 		canvas = new SchetsCanv();
+		colorIcon = new ColorIcon(canvas.getPenkleur());
 		Collection<FileAction> files = createFileActions();
 		Collection<ToolAktie> tools = maakToolAkties();
-		Collection<ControlAktie> controls = maakControlAkties();
+		Collection<Action> controls = maakControlAkties();
 
 		Container c = this.getContentPane();
 		c.setLayout(new BorderLayout());
@@ -38,6 +40,7 @@ public class SchetsApplet extends JApplet implements MouseListener,
 		canvas.addMouseListener(this);
 		canvas.addMouseMotionListener(this);
 		canvas.addKeyListener(this);
+
 	}
 
 	public void setCurrentTool(Tool tool) {
@@ -69,33 +72,33 @@ public class SchetsApplet extends JApplet implements MouseListener,
 
 		LinkedList<ToolAktie> result;
 		result = new LinkedList<ToolAktie>();
-		result.add(new ToolAktie(this, "Pen", "Vrije pentekening", currentTool,
+		result.add(new ToolAktie(this, "Pen", "Draw", currentTool,
 				getImageIcon("pen.gif")));
-		result.add(new ToolAktie(this, "Lijn", "Lijntekening", new LijnTool()));
-		result.add(new ToolAktie(this, "Open rect", "Open rechthoek",
+		result.add(new ToolAktie(this, "Line", "Line", new LijnTool()));
+		result.add(new ToolAktie(this, "Outline rectangle", "Outline rectangle",
 				new RectTool(false)));
-		result.add(new ToolAktie(this, "Fill rect", "Gevulde rechthoek",
-				new RectTool(true)));
-		result.add(new ToolAktie(this, "Open oval", "Open ovaal",
+		result.add(new ToolAktie(this, "Outline oval", "Outline oval",
 				new OvalTool(false)));
-		result.add(new ToolAktie(this, "Fill oval", "Gevulde ovaal",
+		result.add(new ToolAktie(this, "Filled rectangle", "Filled rectangle",
+				new RectTool(true)));
+		result.add(new ToolAktie(this, "Filled oval", "Filled oval",
 				new OvalTool(true)));
 		result.add(new ToolAktie(this, "Tekst", "Tekst", new TekstTool()));
-		result.add(new ToolAktie(this, "Gum", "Uitgummen van de tekening",
+		result.add(new ToolAktie(this, "Eraser", "Delete an element",
 				new GumTool(), getImageIcon("gum.gif")));
 		return result;
 	}
 
 
-	private Collection<ControlAktie> maakControlAkties() {
-		LinkedList<ControlAktie> result;
-		result = new LinkedList<ControlAktie>();
-		result.add(new ControlAktie(canvas, "Clear", "Tekening wissen"));
-		result.add(new ControlAktie(canvas, "Rotate", "Tekening draaien"));
+	private Collection<Action> maakControlAkties() {
+		LinkedList<Action> result;
+		result = new LinkedList<Action>();
+		result.add(new ClearAction(canvas));
+		result.add(new ColorAction(this, colorIcon));
 		return result;
 	}
 
-	private Component maakControlPanel(Collection<ControlAktie> controls) {
+	private Component maakControlPanel(Collection<Action> controls) {
 		JPanel controlPanel = new JPanel();
 
 		JToolBar toolbar = new JToolBar(JToolBar.HORIZONTAL);
@@ -103,23 +106,12 @@ public class SchetsApplet extends JApplet implements MouseListener,
 		for (Action act : controls)
 			toolbar.add(act);
 		controlPanel.add(toolbar);
-
-		controlPanel.add(Box.createHorizontalStrut(20));
-		controlPanel.add(new JLabel("Penkleur"));
-		JComboBox combo = new JComboBox();
-		combo.addItem(new Kleur("zwart", Color.BLACK));
-		combo.addItem(new Kleur("wit", Color.WHITE));
-		combo.addItem(new Kleur("rood", Color.RED));
-		combo.addItem(new Kleur("groen", Color.GREEN));
-		combo.addItem(new Kleur("blauw", Color.BLUE));
-		combo.addItemListener(this);
-		controlPanel.add(combo);
-
+			
 		return controlPanel;
 	}
 
 	private Component maakMenuBar(Collection<FileAction> files, Collection<ToolAktie> tools,
-			Collection<ControlAktie> controls) {
+			Collection<Action> controls) {
 		JMenuBar menubar = new JMenuBar();
 		JMenu menu;
 		

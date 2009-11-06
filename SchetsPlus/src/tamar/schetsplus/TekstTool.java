@@ -2,10 +2,8 @@ package tamar.schetsplus;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.font.FontRenderContext;
 
 import tamar.schetsplus.elements.Element;
 import tamar.schetsplus.elements.Text;
