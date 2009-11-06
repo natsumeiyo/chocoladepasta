@@ -30,7 +30,6 @@ class Schets {
 	}
 
 	public void teken(Graphics g1) {
-		System.out.println("Schets bevat " + elements.size() + " elementen.");
 		Graphics2D g = (Graphics2D) g1;
 		for (Element e : elements) {
 			g.setColor(e.getColor());
