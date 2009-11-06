@@ -29,14 +29,6 @@ class TekstTool extends StartpuntTool {
 		canvas.repaint();
 	}
 
-	// public int tekenTekst(SchetsCanv canvas, Point p, String s) {
-	// Graphics g = canvas.getBitmapGraphics();
-	// g.setFont(font);
-	// this.tekenTekst(g, p, s);
-	// FontRenderContext frc = ((Graphics2D) g).getFontRenderContext();
-	// return font.getStringBounds(s, frc).getBounds().width;
-	// }
-
 	public Element createElement(Point p, Color c) {
 		Text text = new Text(p, c);
 		return text;
@@ -49,5 +41,7 @@ class TekstTool extends StartpuntTool {
 
 	public void muisVersleept(SchetsCanv canvas, Point p) {
 	}
+	
+	
 
 }

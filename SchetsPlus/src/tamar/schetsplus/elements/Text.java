@@ -2,8 +2,10 @@ package tamar.schetsplus.elements;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.geom.Rectangle2D;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -12,6 +14,7 @@ import java.util.List;
 public class Text extends AbstractElement {
 
 	private String s = "";
+	private Rectangle2D bounds;
 
 	public Text(Point p, Color c) {
 		super(c);
@@ -21,11 +24,14 @@ public class Text extends AbstractElement {
 	public void paint(Graphics2D g) {
 		g.setColor(getColor());
 		g.drawString(s, p1.x, p1.y);
+		
+		FontMetrics metrics = g.getFontMetrics();
+		bounds = metrics.getStringBounds(s, g);
+		bounds.setFrame(p1.x, p1.y - metrics.getAscent(), bounds.getWidth(), bounds.getHeight());
 	}
 	
 	public boolean isHitBy(Point p) {
-		// TODO Auto-generated method stub
-		return false;
+		return bounds.contains(p);
 	}
 
 	public void write(DataOutputStream dos) throws IOException {
