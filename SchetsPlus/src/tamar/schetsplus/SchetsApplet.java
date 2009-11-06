@@ -77,8 +77,8 @@ public class SchetsApplet extends JApplet implements MouseListener,
 	private Collection<FileAction> createFileActions() {
 		LinkedList<FileAction> result;
 		result = new LinkedList<FileAction>();
-		result.add(new FileAction(canvas, "Save", "Save file to disk"));
-		result.add(new FileAction(canvas, "Open", "Open file from disk"));
+		result.add(new FileAction(canvas, "Save...", "Save file to disk"));
+		result.add(new FileAction(canvas, "Open...", "Open file from disk"));
 		return result;
 	}
 
