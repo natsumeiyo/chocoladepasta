@@ -18,7 +18,6 @@ public class ColorAction extends AbstractAction {
 		this.applet = applet;
 		colorIcon = (ColorIcon) icon;
 		putValue(Action.SHORT_DESCRIPTION, "Pick a color");
-		putValue(Action.NAME, "Color");
 		putValue(Action.SMALL_ICON, icon);
 	}
 

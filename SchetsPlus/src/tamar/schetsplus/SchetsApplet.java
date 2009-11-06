@@ -106,7 +106,6 @@ public class SchetsApplet extends JApplet implements MouseListener,
 		for (Action act : controls)
 			toolbar.add(act);
 		controlPanel.add(toolbar);
-			
 		return controlPanel;
 	}
 

@@ -8,7 +8,7 @@ public class AboutAktie extends AbstractAction {
 	}
 
 	public void actionPerformed(ActionEvent event) {
-		JOptionPane.showMessageDialog(null, "SchetsEditor versie 1.0", "About",
+		JOptionPane.showMessageDialog(null, "SketchEditor version 2", "About",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
