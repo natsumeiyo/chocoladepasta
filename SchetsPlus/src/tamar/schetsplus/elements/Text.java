@@ -43,4 +43,13 @@ public class Text extends AbstractElement {
 	public void removeLastCharacter() {
 		s = s.substring(0, s.length()-1);
 	}
+
+	public void setString(String s) {
+		this.s = s;
+	}
+
+	public Point getReturnPoint() {
+		int newPointY = p1.y + 12;
+		return new Point(p1.x, newPointY);
+	}
 }

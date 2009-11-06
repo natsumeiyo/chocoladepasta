@@ -18,7 +18,13 @@ class TekstTool extends StartpuntTool {
 		if (c == 8) {
 			text.removeLastCharacter();
 		} else {
-			text.addCharacter(c);			
+			if (c == 10) {
+				Text newText = (Text) createElement(text.getReturnPoint(), text.getColor());
+				canvas.getSchets().addElement(newText);
+				element = newText;
+			} else {
+				text.addCharacter(c);
+			}
 		}
 		canvas.repaint();
 	}

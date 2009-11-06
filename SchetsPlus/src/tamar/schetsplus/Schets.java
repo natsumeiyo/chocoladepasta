@@ -38,17 +38,17 @@ class Schets {
 		}
 	}
 
-	public void resize(int w, int h) {
-		// if (w != bitmap.getWidth() || h != bitmap.getHeight()) {
-		// BufferedImage nieuw = new BufferedImage(w, h,
-		// BufferedImage.TYPE_INT_RGB);
-		// Graphics g = nieuw.getGraphics();
-		// g.setColor(Color.WHITE);
-		// g.fillRect(0, 0, w, h);
-		// g.drawImage(bitmap, 0, 0, null);
-		// bitmap = nieuw;
-		// }
-	}
+//	public void resize(int w, int h) {
+//		// if (w != bitmap.getWidth() || h != bitmap.getHeight()) {
+//		// BufferedImage nieuw = new BufferedImage(w, h,
+//		// BufferedImage.TYPE_INT_RGB);
+//		// Graphics g = nieuw.getGraphics();
+//		// g.setColor(Color.WHITE);
+//		// g.fillRect(0, 0, w, h);
+//		// g.drawImage(bitmap, 0, 0, null);
+//		// bitmap = nieuw;
+//		// }
+//	}
 
 	public void addElement(Element e) {
 		elements.add(e);
@@ -58,10 +58,10 @@ class Schets {
 		elements.remove(e);
 	}
 
-	public Graphics getBitmapGraphics() {
-		// return bitmap.getGraphics();
-		return null;
-	}
+//	public Graphics getBitmapGraphics() {
+//		// return bitmap.getGraphics();
+//		return null;
+//	}
 
 	public void clear() {
 		elements.clear();
@@ -115,9 +115,10 @@ class Schets {
 			if (elementName.equals("Text")) {
 				Color c = new Color(dis.readInt());
 				Point p1 = new Point(dis.readInt(), dis.readInt());
-				addElement(new Text(p1, c));
-//				String s = dis.readUTF();
-				// doe iets met de string
+				Text text = new Text(p1, c);
+				addElement(text);
+				String s = dis.readUTF();
+				text.setString(s);
 			}
 		}
 	}
