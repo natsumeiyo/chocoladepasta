@@ -12,15 +12,17 @@ class TekstTool extends StartpuntTool {
 
 	public void letterIngetikt(SchetsCanv canvas, char c) {
 		Text text = (Text) element;
-		System.out.println((int) c);
 		if (c == 8) {
+			// backspace key
 			text.removeLastCharacter();
 		} else {
 			if (c == 10) {
+				// return key
 				Text newText = (Text) createElement(text.getReturnPoint(), text.getColor());
 				canvas.getSchets().addElement(newText);
 				element = newText;
 			} else {
+				// all other keys
 				text.addCharacter(c);
 			}
 		}

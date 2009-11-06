@@ -32,18 +32,19 @@ public class Oval extends AbstractElement {
 		}
 	}
 
-	public boolean isHitBy(Point mp) {
+	public boolean isHitBy(Point aSmoothCriminal) { // MJ lives! ;-)
 		if (filled) {
 			Shape shape = new Ellipse2D.Float(getMin().x, getMin().y,
 					dimension().width, dimension().height);
-			return shape.contains(mp);
+			return shape.contains(aSmoothCriminal);
 		} else {
 			Stroke s = new BasicStroke(SELECTIONMARGIN);
 			Shape shape = s.createStrokedShape(new Ellipse2D.Float(getMin().x,
 					getMin().y, dimension().width, dimension().height));
-			return shape.contains(mp);
+			return shape.contains(aSmoothCriminal);
 		}
 	}
+
 	
 
 	public void write(DataOutputStream dos) throws IOException {

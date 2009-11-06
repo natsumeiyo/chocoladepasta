@@ -75,9 +75,9 @@ public class SchetsApplet extends JApplet implements MouseListener,
 		result.add(new ToolAktie(this, "Pen", "Draw", currentTool,
 				getImageIcon("pen.gif")));
 		result.add(new ToolAktie(this, "Line", "Line", new LijnTool()));
-		result.add(new ToolAktie(this, "Outline rectangle", "Outline rectangle",
+		result.add(new ToolAktie(this, "Outlined rectangle", "Outlined rectangle",
 				new RectTool(false)));
-		result.add(new ToolAktie(this, "Outline oval", "Outline oval",
+		result.add(new ToolAktie(this, "Outlined oval", "Outlined oval",
 				new OvalTool(false)));
 		result.add(new ToolAktie(this, "Filled rectangle", "Filled rectangle",
 				new RectTool(true)));

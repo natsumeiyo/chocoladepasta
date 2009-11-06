@@ -12,7 +12,8 @@ public class SchetsApplic extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) { 
+		System.out.println(System.getProperty("user.dir"));
 		new SchetsApplic().setVisible(true);
 	}
 

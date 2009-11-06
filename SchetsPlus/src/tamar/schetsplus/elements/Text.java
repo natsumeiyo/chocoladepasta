@@ -31,14 +31,6 @@ public class Text extends AbstractElement {
 		return bounds.contains(p);
 	}
 
-	public void write(DataOutputStream dos) throws IOException {
-		dos.writeUTF("Text");
-		dos.writeInt(getColor().getRGB());
-		dos.writeInt(p1.x);
-		dos.writeInt(p1.y);
-		dos.writeUTF(s);
-	}
-
 	public void addCharacter(char c) {
 		s += c;
 	}
@@ -52,7 +44,14 @@ public class Text extends AbstractElement {
 	}
 
 	public Point getReturnPoint() {
-		int newPointY = p1.y + 12;
-		return new Point(p1.x, newPointY);
+		return new Point(p1.x, p1.y + 13);
+	}
+	
+	public void write(DataOutputStream dos) throws IOException {
+		dos.writeUTF("Text");
+		dos.writeInt(getColor().getRGB());
+		dos.writeInt(p1.x);
+		dos.writeInt(p1.y);
+		dos.writeUTF(s);
 	}
 }

@@ -8,7 +8,7 @@ public class ToolAktie extends AbstractAction {
 
 	public ToolAktie(SchetsApplet applet, String naam, String tip, Tool tool,
 			Icon icon) {
-		super(naam /* ,icon */); // twee parameters geeft icons in de menu's
+		super(naam /*, icon*/); // twee parameters geeft icons in de menu's
 		this.applet = applet;
 		this.tool = tool;
 		putValue(Action.DEFAULT, icon);

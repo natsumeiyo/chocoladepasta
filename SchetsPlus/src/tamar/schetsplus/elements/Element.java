@@ -16,12 +16,14 @@ public interface Element {
 	public Color getColor();
 	
 	public boolean isHitBy(Point p);
+	// does the eraser hit the element?
 	
 	public Point getMin();
 	
 	public Point getMax();
 	
 	public void write(DataOutputStream dos) throws IOException;
+	// write element's characteristics into the text-file
 
 	Dimension dimension();
 
