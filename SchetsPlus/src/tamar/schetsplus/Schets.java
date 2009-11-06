@@ -63,7 +63,6 @@ class Schets {
 		DataInputStream dis = new DataInputStream(fis);
 		int numberOfElements = dis.read();
 		for (int i = 0; i < numberOfElements; i++) {
-			System.out.println(i);
 			String elementName = dis.readUTF();
 			if (elementName.equals("Rectangle")) {
 				Boolean filled = dis.readBoolean();
