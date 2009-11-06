@@ -2,6 +2,11 @@ package tamar.schetsplus;
 import java.awt.*;
 import javax.swing.JFrame;
 
+/**@name SketchEditor version 2.0 | A simplified version of MSPaint
+ * @author Tamar van Steenbergen | 3233308
+ *
+ */
+
 public class SchetsApplic extends JFrame {
 	SchetsApplic() {
 		this.setSize(800, 600);
