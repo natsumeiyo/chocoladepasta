@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.LinkedList;
-import java.util.List;
 
 import tamar.schetsplus.elements.Element;
 import tamar.schetsplus.elements.Line;
@@ -23,7 +22,7 @@ import tamar.schetsplus.elements.Rectangle;
 import tamar.schetsplus.elements.Text;
 
 class Schets {
-	protected List<Element> elements;
+	protected LinkedList<Element> elements;
 
 	Schets() {
 		elements = new LinkedList<Element>();
@@ -105,4 +104,11 @@ class Schets {
 		}
 		dis.close();
 	}
+
+	public void eraseLastElement() {
+		if (!elements.isEmpty()) {
+			elements.removeLast();
+		}
+	}
+	
 }

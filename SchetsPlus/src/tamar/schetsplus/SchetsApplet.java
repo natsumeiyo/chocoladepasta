@@ -107,6 +107,7 @@ public class SchetsApplet extends JApplet implements MouseListener,
 	private Collection<Action> maakControlAkties() {
 		LinkedList<Action> result;
 		result = new LinkedList<Action>();
+		result.add(new UndoAction(canvas));
 		result.add(new ClearAction(canvas));
 		result.add(new ColorAction(this, colorIcon));
 		return result;
@@ -134,15 +135,15 @@ public class SchetsApplet extends JApplet implements MouseListener,
 		}
 		menubar.add(menu);
 
-		menu = new JMenu("Tool");
-		for (Action tool : tools) {
-			menu.add(tool);
-		}
-		menubar.add(menu);
-
 		menu = new JMenu("Edit");
 		for (Action ctrl : controls) {
 			menu.add(ctrl);
+		}
+		menubar.add(menu);
+		
+		menu = new JMenu("Tool");
+		for (Action tool : tools) {
+			menu.add(tool);
 		}
 		menubar.add(menu);
 
