@@ -1,10 +1,10 @@
 package tamar.schetsplus;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.net.URL;
 import javax.swing.*;
-
 
 public class SchetsApplet extends JApplet implements MouseListener,
 		MouseMotionListener, ItemListener, KeyListener {
@@ -49,11 +49,7 @@ public class SchetsApplet extends JApplet implements MouseListener,
 
 	private ImageIcon getImageIcon(String filename) {
 		try {
-			if (isDeelVanApplicatie) {
-				return new ImageIcon(getClass().getResource(filename));
-			} else {
-				return new ImageIcon(new URL(this.getCodeBase(), filename));
-			}
+			return new ImageIcon(getClass().getResource(filename));
 		} catch (Exception e) {
 			return null;
 		}
@@ -64,7 +60,7 @@ public class SchetsApplet extends JApplet implements MouseListener,
 		result = new LinkedList<FileAction>();
 		result.add(new FileAction(canvas, "Save", "Save file to disk"));
 		result.add(new FileAction(canvas, "Open", "Open file from disk"));
-		return result;		
+		return result;
 	}
 
 	private Collection<ToolAktie> maakToolAkties() {
@@ -75,8 +71,8 @@ public class SchetsApplet extends JApplet implements MouseListener,
 		result.add(new ToolAktie(this, "Pen", "Draw", currentTool,
 				getImageIcon("pen.gif")));
 		result.add(new ToolAktie(this, "Line", "Line", new LijnTool()));
-		result.add(new ToolAktie(this, "Outlined rectangle", "Outlined rectangle",
-				new RectTool(false)));
+		result.add(new ToolAktie(this, "Outlined rectangle",
+				"Outlined rectangle", new RectTool(false)));
 		result.add(new ToolAktie(this, "Outlined oval", "Outlined oval",
 				new OvalTool(false)));
 		result.add(new ToolAktie(this, "Filled rectangle", "Filled rectangle",
@@ -88,7 +84,6 @@ public class SchetsApplet extends JApplet implements MouseListener,
 				new GumTool(), getImageIcon("gum.gif")));
 		return result;
 	}
-
 
 	private Collection<Action> maakControlAkties() {
 		LinkedList<Action> result;
@@ -109,11 +104,11 @@ public class SchetsApplet extends JApplet implements MouseListener,
 		return controlPanel;
 	}
 
-	private Component maakMenuBar(Collection<FileAction> files, Collection<ToolAktie> tools,
-			Collection<Action> controls) {
+	private Component maakMenuBar(Collection<FileAction> files,
+			Collection<ToolAktie> tools, Collection<Action> controls) {
 		JMenuBar menubar = new JMenuBar();
 		JMenu menu;
-		
+
 		menu = new JMenu("File");
 		for (Action fileAction : files) {
 			menu.add(fileAction);
