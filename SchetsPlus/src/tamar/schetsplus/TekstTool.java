@@ -33,7 +33,7 @@ class TekstTool extends StartpuntTool {
 	}
 
 	public Element createElement(Point p, Color c) {
-		return new Text(c);
+		return null;
 	}
 
 	public void drawIcon(Graphics2D g, int x, int y, int w, int h) {

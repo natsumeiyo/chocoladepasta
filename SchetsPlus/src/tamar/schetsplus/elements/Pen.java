@@ -46,8 +46,9 @@ public class Pen extends AbstractElement {
 	}
 
 	public void write(DataOutputStream dos) throws IOException {
-		dos.writeChars("Pen");
+		dos.writeUTF("Pen");
 		dos.write(getColor().getRGB());
+		dos.write(points.size());
 		for (Point p : points) {
 			dos.write(p.x);
 			dos.write(p.x);

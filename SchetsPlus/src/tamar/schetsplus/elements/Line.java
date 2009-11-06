@@ -25,7 +25,7 @@ public class Line extends AbstractElement {
 	}
 
 	public void write(DataOutputStream dos) throws IOException {
-		dos.writeChars("Line");
+		dos.writeUTF("Line");
 		dos.write(getColor().getRGB());
 		dos.write(p1.x);
 		dos.write(p1.y);

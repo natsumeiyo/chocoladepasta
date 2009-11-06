@@ -47,7 +47,7 @@ public class Oval extends AbstractElement {
 	
 
 	public void write(DataOutputStream dos) throws IOException {
-		dos.writeChars("Oval");
+		dos.writeUTF("Oval");
 		dos.writeBoolean(filled);
 		dos.write(getColor().getRGB());
 		dos.write(p1.x);

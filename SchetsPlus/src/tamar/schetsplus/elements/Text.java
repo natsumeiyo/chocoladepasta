@@ -10,7 +10,7 @@ public class Text extends AbstractElement {
 
 	String s;
 
-	public Text(Color c) {
+	public Text(Point p, Color c) {
 		super(c);
 		// TODO Auto-generated constructor stub
 	}
@@ -26,10 +26,10 @@ public class Text extends AbstractElement {
 	}
 
 	public void write(DataOutputStream dos) throws IOException {
-		dos.writeChars("Text");
+		dos.writeUTF("Text");
 		dos.write(getColor().getRGB());
 		dos.write(p1.x);
 		dos.write(p1.y);
-		dos.writeChars(s);
+		dos.writeUTF(s);
 	}
 }
