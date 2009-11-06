@@ -40,13 +40,6 @@ public class SchetsApplet extends JApplet implements MouseListener,
 		canvas.addKeyListener(this);
 	}
 
-	private Collection<FileAction> createFileActions() {
-		LinkedList<FileAction> result;
-		result = new LinkedList<FileAction>();
-		result.add(new FileAction(canvas, "Save", "Save file to disk"));
-		result.add(new FileAction(canvas, "Open", "Open file from disk"));
-		return result;	}
-
 	public void setCurrentTool(Tool tool) {
 		currentTool = tool;
 	}
@@ -61,6 +54,14 @@ public class SchetsApplet extends JApplet implements MouseListener,
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	private Collection<FileAction> createFileActions() {
+		LinkedList<FileAction> result;
+		result = new LinkedList<FileAction>();
+		result.add(new FileAction(canvas, "Save", "Save file to disk"));
+		result.add(new FileAction(canvas, "Open", "Open file from disk"));
+		return result;		
 	}
 
 	private Collection<ToolAktie> maakToolAkties() {

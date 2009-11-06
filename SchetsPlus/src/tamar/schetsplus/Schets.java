@@ -116,7 +116,7 @@ class Schets {
 				Color c = new Color(dis.readInt());
 				Point p1 = new Point(dis.readInt(), dis.readInt());
 				addElement(new Text(p1, c));
-				String s = dis.readUTF();
+//				String s = dis.readUTF();
 				// doe iets met de string
 			}
 		}
