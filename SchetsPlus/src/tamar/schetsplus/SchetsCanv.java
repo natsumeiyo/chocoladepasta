@@ -31,16 +31,9 @@ class SchetsCanv extends JPanel {
 	}
 
 	public void setBounds(int x, int y, int w, int h) {
-//		schets.resize(w, h);
 		super.setBounds(x, y, w, h);
 		this.repaint();
 	}
-
-//	public Graphics getBitmapGraphics() {
-//		Graphics g = schets.getBitmapGraphics();
-//		g.setColor(penkleur);
-//		return g;
-//	}
 
 	public Schets getSchets() {
 		return schets;

@@ -166,7 +166,6 @@ public class SchetsApplet extends JApplet implements MouseListener,
 	}
 
 	public void mouseReleased(MouseEvent e) {
-//		this.currentTool.muisLosgelaten(canvas, e.getPoint());
 	}
 
 	public void mouseDragged(MouseEvent e) {

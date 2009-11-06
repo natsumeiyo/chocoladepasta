@@ -38,18 +38,6 @@ class Schets {
 		}
 	}
 
-//	public void resize(int w, int h) {
-//		// if (w != bitmap.getWidth() || h != bitmap.getHeight()) {
-//		// BufferedImage nieuw = new BufferedImage(w, h,
-//		// BufferedImage.TYPE_INT_RGB);
-//		// Graphics g = nieuw.getGraphics();
-//		// g.setColor(Color.WHITE);
-//		// g.fillRect(0, 0, w, h);
-//		// g.drawImage(bitmap, 0, 0, null);
-//		// bitmap = nieuw;
-//		// }
-//	}
-
 	public void addElement(Element e) {
 		elements.add(e);
 	}
@@ -57,11 +45,6 @@ class Schets {
 	public void eraseElement(Element e) {
 		elements.remove(e);
 	}
-
-//	public Graphics getBitmapGraphics() {
-//		// return bitmap.getGraphics();
-//		return null;
-//	}
 
 	public void clear() {
 		elements.clear();
