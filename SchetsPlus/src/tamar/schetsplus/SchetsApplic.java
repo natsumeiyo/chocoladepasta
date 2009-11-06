@@ -18,7 +18,6 @@ public class SchetsApplic extends JFrame {
 	}
 
 	public static void main(String[] args) { 
-		System.out.println(System.getProperty("user.dir"));
 		new SchetsApplic().setVisible(true);
 	}
 
